@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "WTTestCharacter.generated.h"
 
+
 UCLASS(config=Game)
 class AWTTestCharacter : public ACharacter
 {
@@ -22,8 +23,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-protected:
-
+public:
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -31,11 +31,12 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
+	void PlantBomb();
 
-protected:
-	// APawn interface
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	// End of APawn interface
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Bombs", meta = (DisplayName = "Projectile BP"))
+	TSubclassOf<class AWTTestBomb> m_Bombs;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")
+	int m_NumberOfAvailableBombs = 1;
 };
 
