@@ -37,6 +37,9 @@ public:
 	TSubclassOf<class AWTTestBomb> m_Bombs;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")
-	int m_NumberOfAvailableBombs = 1;
+	int32 m_NumberOfAvailableBombs = 2;
+
+protected:
+
 };
 

@@ -8,11 +8,33 @@
 
 UCLASS(minimalapi)
 class AWTTestGameMode : public AGameModeBase
-{
+{  
 	GENERATED_BODY()
 
+	// --------------------------------------------------------
+	// Constructors
+	// --------------------------------------------------------
+
 public:
-	AWTTestGameMode();
+	AWTTestGameMode(const FObjectInitializer& ObjectInitializer);
+
+	// --------------------------------------------------------
+	// UE4 Functions
+	// --------------------------------------------------------
+
+	virtual void BeginPlay();
+
+	virtual void Tick(float DeltaSeconds) override;
+
+	// --------------------------------------------------------
+	// Class Properties
+	// --------------------------------------------------------
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
+	float m_LevelTimer = 120.0f;
+
 };
 
 

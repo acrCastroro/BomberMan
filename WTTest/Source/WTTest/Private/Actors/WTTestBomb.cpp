@@ -2,6 +2,7 @@
 
 
 #include "Actors/WTTestBomb.h"
+#include "Characters/WTTestCharacter.h"
 
 // Sets default values
 AWTTestBomb::AWTTestBomb(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -12,13 +13,19 @@ AWTTestBomb::AWTTestBomb(const FObjectInitializer& ObjectInitializer) : Super(Ob
 	m_SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
 	RootComponent = m_SphereMesh;
-
 }
 
 // Called when the game starts or when spawned
 void AWTTestBomb::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UWorld* world = GetWorld();
+	
+	if (IsValid(world)) 
+	{
+		world->GetTimerManager().SetTimer(m_TimeToExplodeHandle, this, &AWTTestBomb::Explode, m_TimeToExplode, false);
+	}
 	
 }
 
@@ -26,6 +33,18 @@ void AWTTestBomb::BeginPlay()
 void AWTTestBomb::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+}
+
+void AWTTestBomb::Explode() 
+{
+	AWTTestCharacter* owner = Cast<AWTTestCharacter>(GetOwner());
+
+	check(IsValid(owner));
+
+	owner->m_NumberOfAvailableBombs++;
+
+	Destroy();
 
 }
 

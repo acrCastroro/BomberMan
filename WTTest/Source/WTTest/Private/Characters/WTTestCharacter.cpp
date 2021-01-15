@@ -74,14 +74,21 @@ void AWTTestCharacter::MoveRight(float Value)
 
 void AWTTestCharacter::PlantBomb() {
 
-	FVector spawnLocation = GetActorLocation();
-	FRotator spawnRotation = GetActorRotation();
+	if (m_NumberOfAvailableBombs > 0)
+	{
 
-	FActorSpawnParameters spawnParameters;
-	spawnParameters.Instigator = GetInstigator();
-	spawnParameters.Owner = this;
+		FVector spawnLocation = GetActorLocation();
+		FRotator spawnRotation = GetActorRotation();
 
-	check(IsValid(m_Bombs));
-	AWTTestBomb* spawnedBomb = GetWorld()->SpawnActor<AWTTestBomb>(m_Bombs, spawnLocation, spawnRotation, spawnParameters);
+		FActorSpawnParameters spawnParameters;
+		spawnParameters.Instigator = GetInstigator();
+		spawnParameters.Owner = this;
 
+		check(IsValid(m_Bombs));
+		AWTTestBomb* spawnedBomb = GetWorld()->SpawnActor<AWTTestBomb>(m_Bombs, spawnLocation, spawnRotation, spawnParameters);
+		spawnedBomb->SetOwner(this);
+
+		m_NumberOfAvailableBombs--;
+
+	}
 }

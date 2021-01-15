@@ -4,7 +4,7 @@
 #include "Characters/WTTestCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
-AWTTestGameMode::AWTTestGameMode()
+AWTTestGameMode::AWTTestGameMode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPersonCPP/Blueprints/ThirdPersonCharacter"));
@@ -12,4 +12,18 @@ AWTTestGameMode::AWTTestGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+}
+
+void AWTTestGameMode::BeginPlay()
+{
+
+	Super::BeginPlay();
+
+}
+
+void AWTTestGameMode::Tick(float DeltaSeconds) 
+{
+
+	Super::Tick(DeltaSeconds);
+
 }

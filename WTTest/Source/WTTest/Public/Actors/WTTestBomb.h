@@ -45,6 +45,17 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
 	float m_MaxExplosionDistance = 10.0f;
+	
+	FTimerHandle m_TimeToExplodeHandle;
 	   
 	bool m_bActive = false;
+
+	// --------------------------------------------------------
+	// Class Functions
+	// --------------------------------------------------------
+
+protected:
+
+	UFUNCTION(BlueprintCallable, Category = "Actions")
+	void Explode();
 };
