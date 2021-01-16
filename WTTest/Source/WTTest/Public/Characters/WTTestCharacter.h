@@ -33,7 +33,7 @@ public:
 
 	void PlantBomb();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Bombs", meta = (DisplayName = "Projectile BP"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Bombs", meta = (DisplayName = "Bombs"))
 	TSubclassOf<class AWTTestBomb> m_Bombs;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")

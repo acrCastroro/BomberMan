@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+
+#include "Actors/WTTestMapManager.h"
+
 #include "WTTestGameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -34,6 +37,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
 	float m_LevelTimer = 120.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Actors", meta = (DisplayName = "Map Manager"))
+	TSubclassOf<AWTTestMapManager> m_MapManagerBP;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
+	AWTTestMapManager* m_MapManager;
 
 };
 

@@ -58,12 +58,25 @@ public:
 	int32 m_Grid[m_kGridWidth][m_kGridHeight] = {0};
 	AActor* m_ActorsGrid[m_kGridWidth][m_kGridHeight] = {nullptr};
 
+	float m_XOffset = 50.0f;
+	float m_YOffset = 50.0f;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
 	TSubclassOf<class AWTTestDestructibleWall> m_DestructibleWall;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
 	TSubclassOf<class AWTTestMapTile> m_Tile;
 
+	// --------------------------------------------------------
+	// Class Functions
+	// --------------------------------------------------------
+	UFUNCTION(BlueprintCallable)
 	int32 GetGridValue(int32 x, int32 y);
+	UFUNCTION(BlueprintCallable)
+	int32 GetGridValueWithLocation(FVector actorLocation);
 
+	UFUNCTION(BlueprintCallable)
+	AActor* GetGridActor(int32 x, int32 y);
+	UFUNCTION(BlueprintCallable)
+	AActor* GetGridActorWithLocation(FVector actorLocation);
 };

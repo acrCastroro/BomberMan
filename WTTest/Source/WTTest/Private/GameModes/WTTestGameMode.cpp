@@ -12,6 +12,7 @@ AWTTestGameMode::AWTTestGameMode(const FObjectInitializer& ObjectInitializer) : 
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
 }
 
 void AWTTestGameMode::BeginPlay()
