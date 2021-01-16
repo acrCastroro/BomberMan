@@ -11,11 +11,8 @@ AWTTestMapTile::AWTTestMapTile(const FObjectInitializer& ObjectInitializer)
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_CubeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CubeMeshComponent"));
-	m_Spawner = CreateDefaultSubobject<USceneComponent>(TEXT("Spawner"));
 
 	RootComponent = m_CubeMesh;
-	m_Spawner->AttachTo(m_CubeMesh);
-
 }
 
 // Called when the game starts or when spawned

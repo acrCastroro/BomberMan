@@ -33,7 +33,6 @@ void AWTTestBomb::BeginPlay()
 void AWTTestBomb::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AWTTestBomb::Explode() 
@@ -45,6 +44,5 @@ void AWTTestBomb::Explode()
 	owner->m_NumberOfAvailableBombs++;
 
 	Destroy();
-
 }
 

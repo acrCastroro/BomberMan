@@ -23,7 +23,7 @@ class WTTEST_API AWTTestMapManager : public AActor
 	// Constructors
 	// --------------------------------------------------------
 public:	
-	// Sets default values for this actor's properties
+
 	AWTTestMapManager(const FObjectInitializer& ObjectInitializer);
 
 	// --------------------------------------------------------
@@ -31,11 +31,11 @@ public:
 	// --------------------------------------------------------
 
 protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
+
 	virtual void Tick(float DeltaTime) override;
 
 	// --------------------------------------------------------
@@ -46,8 +46,6 @@ public:
 
 	void SpawnGrid();
 
-	void SpawnGridObjects();
-
 	// --------------------------------------------------------
 	// Class Properties
 	// --------------------------------------------------------
@@ -57,12 +55,15 @@ public:
 	static const int32 m_kGridWidth = 20;
 	static const int32 m_kGridHeight = 20;
 
-	int32 m_Grid[m_kGridWidth][m_kGridHeight];
+	int32 m_Grid[m_kGridWidth][m_kGridHeight] = {0};
+	AActor* m_ActorsGrid[m_kGridWidth][m_kGridHeight] = {nullptr};
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
 	TSubclassOf<class AWTTestDestructibleWall> m_DestructibleWall;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
 	TSubclassOf<class AWTTestMapTile> m_Tile;
+
+	int32 GetGridValue(int32 x, int32 y);
 
 };

@@ -38,8 +38,4 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Mesh")
 	class UStaticMeshComponent* m_CubeMesh;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Spawner")
-	class USceneComponent* m_Spawner;
-
-
 };

@@ -21,7 +21,7 @@ void AWTTestMapManager::BeginPlay()
 	Super::BeginPlay();
 
 	CreateGrid();
-	SpawnGridObjects();
+	SpawnGrid();
 	
 }
 
@@ -29,7 +29,6 @@ void AWTTestMapManager::BeginPlay()
 void AWTTestMapManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 
@@ -39,13 +38,12 @@ void AWTTestMapManager::CreateGrid()
 	{
 		for (int32 j = 0; j < m_kGridHeight; ++j)
 		{
-			m_Grid[i][j] = FMath::RandRange(0, 1);
+			m_Grid[i][j] = FMath::RandRange(0, 2);
 		}
 	}
-
 }
 
-void AWTTestMapManager::SpawnGridObjects()
+void AWTTestMapManager::SpawnGrid()
 {
 	check(IsValid(m_Tile));
 
@@ -60,14 +58,32 @@ void AWTTestMapManager::SpawnGridObjects()
 	for (int32 i = 0; i < m_kGridWidth; ++i)
 	{		
 		for (int32 j = 0; j < m_kGridHeight; ++j)
-		{
-			
+		{			
 			AWTTestMapTile* spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, auxSpawnLocation, spawnRotation, spawnParameters);
 			spawnedTile->SetOwner(this);
-			auxSpawnLocation.Y += 100;
+
+			if (m_Grid[i][j] == 1)
+			{
+				AWTTestDestructibleWall* destructibleWall =
+					GetWorld()->SpawnActor<AWTTestDestructibleWall>(m_DestructibleWall, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
+				
+				m_ActorsGrid[i][j] = destructibleWall;
+
+			}
+			else if (m_Grid[i][j] == 2) {
+				 spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
+			}
 			
+			auxSpawnLocation.Y += 100;			
 		}
+
 		auxSpawnLocation.X -= 100;
 		auxSpawnLocation.Y = spawnLocation.Y;
 	}
 }
+
+int32 AWTTestMapManager::GetGridValue(int32 x, int32 y) 
+{
+	return m_Grid[x][y];
+}
+
