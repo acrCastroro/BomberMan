@@ -73,10 +73,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int32 GetGridValue(int32 x, int32 y);
 	UFUNCTION(BlueprintCallable)
-	int32 GetGridValueWithLocation(FVector actorLocation);
+	int32 GetGridValueWithLocation(FVector actorLocation, int32& xGridposition, int32& yGridPosition);
 
 	UFUNCTION(BlueprintCallable)
 	AActor* GetGridActor(int32 x, int32 y);
 	UFUNCTION(BlueprintCallable)
 	AActor* GetGridActorWithLocation(FVector actorLocation);
+
+	UFUNCTION(BlueprintCallable)
+	void DestroyActorFromGrid(int32 x, int32 y);
 };

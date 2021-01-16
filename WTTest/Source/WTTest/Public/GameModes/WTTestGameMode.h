@@ -36,13 +36,18 @@ public:
 public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
-	float m_LevelTimer = 120.0f;
+	float m_LevelTimer = 120.0;
+
+	bool m_bEndGame = false;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Actors", meta = (DisplayName = "Map Manager"))
 	TSubclassOf<AWTTestMapManager> m_MapManagerBP;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
 	AWTTestMapManager* m_MapManager;
+
+	UFUNCTION(BlueprintCallable, Category = "GameProperties|Getters")
+	int GetTimeRemainingToEndGame() const;
 
 };
 

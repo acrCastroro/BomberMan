@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "WTTestBomb.generated.h"
 
+class AWTTestGameMode;
+
 UCLASS()
 class WTTEST_API AWTTestBomb : public AActor
 {
@@ -35,7 +37,7 @@ public:
 	// Class Proprerties
 	// --------------------------------------------------------
 
-protected:
+public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mesh")
 	class UStaticMeshComponent* m_SphereMesh;
@@ -44,12 +46,13 @@ protected:
 	float m_TimeToExplode = 3.0f;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
-	float m_MaxExplosionDistance = 10.0f;
+	int m_MaxExplosionTileDistance = 3;
 	
 	FTimerHandle m_TimeToExplodeHandle;
 	   
 	bool m_bActive = false;
 
+	AWTTestGameMode* m_GameMode;
 	// --------------------------------------------------------
 	// Class Functions
 	// --------------------------------------------------------
@@ -58,4 +61,12 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void Explode();
+
+	void UpExplosionExpansion();
+	void RightExplosionExpansion();
+	void DownExplosionExpansion();
+	void LeftExplosionExpansion();
+
+	void CheckExplosionsExpansions();
+
 };

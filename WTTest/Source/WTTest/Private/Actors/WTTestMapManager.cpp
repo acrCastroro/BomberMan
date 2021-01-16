@@ -71,16 +71,17 @@ void AWTTestMapManager::SpawnGrid()
 
 			if (m_Grid[i][j] == 1)
 			{
-				//AWTTestDestructibleWall* destructibleWall =
-					//GetWorld()->SpawnActor<AWTTestDestructibleWall>(m_DestructibleWall, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
+				AWTTestDestructibleWall* destructibleWall =
+					GetWorld()->SpawnActor<AWTTestDestructibleWall>(m_DestructibleWall, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
 				
-				//m_ActorsGrid[i][j] = destructibleWall;
+				m_ActorsGrid[i][j] = destructibleWall;
 
 			}
-			else if (m_Grid[i][j] == 2) {
+			/*else if (m_Grid[i][j] == 2) {
 				 spawnedTile = 
 					 GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
-			}
+				m_ActorsGrid[i][j] = spawnedTile;
+			}*/
 			
 			auxSpawnLocation.Y += 100;			
 		}
@@ -95,12 +96,14 @@ int32 AWTTestMapManager::GetGridValue(int32 x, int32 y)
 	return m_Grid[x][y];
 }
 
-int32 AWTTestMapManager::GetGridValueWithLocation(FVector actorLocation)
-{
+int32 AWTTestMapManager::GetGridValueWithLocation(FVector actorLocation, int32& xGridposition, int32& yGridPosition)
+{	
+	int32 x = FMath::Abs((actorLocation.X - m_XOffset) / 100.0f);
+	int32 y = (actorLocation.Y + m_YOffset) / 100.0f;
 
-	int32 x = (actorLocation.X - m_XOffset) / m_kGridWidth;
-	int32 y = (actorLocation.Y + m_YOffset) / m_kGridHeight;
-
+	xGridposition = x;
+	yGridPosition = y;
+	
 	return m_Grid[x][y];
 }
 
@@ -108,10 +111,17 @@ AActor* AWTTestMapManager::GetGridActor(int32 x, int32 y)
 {
 	return m_ActorsGrid[x][y];
 }
+
 AActor* AWTTestMapManager::GetGridActorWithLocation(FVector actorLocation)
 {
-	int32 x = (actorLocation.X - m_XOffset) / m_kGridWidth;
-	int32 y = (actorLocation.Y + m_YOffset) / m_kGridHeight;
+	int32 x = FMath::Abs((actorLocation.X - m_XOffset) / 100);
+	int32 y = (actorLocation.Y + m_YOffset) / 100;
 
 	return m_ActorsGrid[x][y];
+}
+
+void AWTTestMapManager::DestroyActorFromGrid(int32 x, int32 y)
+{
+	m_ActorsGrid[x][y]->Destroy();
+	m_Grid[x][y] = 0;
 }

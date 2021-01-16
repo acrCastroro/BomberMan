@@ -3,6 +3,7 @@
 #include "Characters/WTTestCharacter.h"
 
 #include "Actors/WTTestBomb.h"
+#include "GameModes/WTTestGameMode.h"
 
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
@@ -73,6 +74,10 @@ void AWTTestCharacter::MoveRight(float Value)
 }
 
 void AWTTestCharacter::PlantBomb() {
+
+	 AWTTestGameMode* gm =  Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
+
+	 //gm->m_MapManager->GetGridValueWithLocation(GetActorLocation(), 0, 0);
 
 	if (m_NumberOfAvailableBombs > 0)
 	{
