@@ -42,8 +42,6 @@ AWTTestCharacter::AWTTestCharacter()
 
 //////////////////////////////////////////////////////////////////////////
 // Input
-
-
 void AWTTestCharacter::MoveForward(float Value)
 {
 	if ((Controller != NULL) && (Value != 0.0f))

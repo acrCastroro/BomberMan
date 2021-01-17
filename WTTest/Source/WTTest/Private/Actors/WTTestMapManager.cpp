@@ -131,8 +131,8 @@ FVector AWTTestMapManager::GetWorldPositionsFromGrid(int32 x, int32 y)
 
 void AWTTestMapManager::DestroyActorFromGrid(int32 x, int32 y)
 {
-	m_ActorsGrid[x][y]->Destroy();
 	m_Grid[x][y] = 0;
+	m_ActorsGrid[x][y]->Destroy();
 }
 
 void AWTTestMapManager::SetGridValue(int32 x, int32 y, int32 value) 
@@ -146,6 +146,5 @@ void AWTTestMapManager::SetGridValueWithActorLocation(FVector actorLocation, int
 	int32 y = (actorLocation.Y + m_YOffset) / 100.0f;
 
 	m_Grid[x][y] = value;
-
 }
 

@@ -69,7 +69,6 @@ public:
 protected:
 
 
-
 	void UpExplosionExpansion();
 	void RightExplosionExpansion();
 	void DownExplosionExpansion();
@@ -78,5 +77,10 @@ protected:
 	void CheckExplosionsExpansions();
 
 	void SpawnCentralExplosion();
+
+	// --------------------------------------------------------
+	// Protected Properties
+	// --------------------------------------------------------
+	class AWTTestCharacter* m_Owner;
 
 };

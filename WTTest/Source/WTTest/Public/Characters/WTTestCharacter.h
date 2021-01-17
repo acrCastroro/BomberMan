@@ -39,6 +39,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")
 	int32 m_NumberOfAvailableBombs = 2;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Score")
+	int32 m_Score = 0;
+
 protected:
 
 };

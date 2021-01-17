@@ -62,7 +62,6 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 		{
 			if(bomb->m_bActive == false) 
 			{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "BombaLoco");
 			GetWorldTimerManager().ClearTimer(bomb->m_TimeToExplodeHandle);
 			bomb->Explode();
 			}
@@ -78,10 +77,9 @@ void AWTTestBombExplosion::EndExplosion()
 
 	AWTTestGameMode* gameMode = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
 
-	if (IsValid(gameMode)) 
+	if (IsValid(gameMode))
 	{
 		gameMode->m_MapManager->SetGridValueWithActorLocation(GetActorLocation(), 0);	
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, "Cambiando el mundo");
 	}
 
 

@@ -26,7 +26,12 @@ void AWTTestBomb::BeginPlay()
 	Super::BeginPlay();
 
 	UWorld* world = GetWorld();
-	m_GameMode = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
+	check(IsValid(world));
+
+	m_GameMode = Cast<AWTTestGameMode>(world->GetAuthGameMode());
+
+	m_Owner = Cast<AWTTestCharacter>(GetOwner());
+	check(IsValid(m_Owner));
 	
 	if (IsValid(world)) 
 	{
@@ -45,11 +50,7 @@ void AWTTestBomb::Explode()
 {
 	m_bActive = true;
 
-	AWTTestCharacter* owner = Cast<AWTTestCharacter>(GetOwner());
-
-	check(IsValid(owner));
-
-	owner->m_NumberOfAvailableBombs++;
+	m_Owner->m_NumberOfAvailableBombs++;
 
 	CheckExplosionsExpansions();
 
@@ -78,6 +79,7 @@ void AWTTestBomb::UpExplosionExpansion()
 
 		if (aux == 1) {
 			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
+			m_Owner->m_Score += 100;
 			break;
 		}
 		else if (aux == 2)
@@ -122,6 +124,7 @@ void AWTTestBomb::RightExplosionExpansion()
 
 		if (aux == 1) {
 			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
+			m_Owner->m_Score += 100;
 			break;
 		}
 		else if (aux == 2)
@@ -167,6 +170,7 @@ void AWTTestBomb::DownExplosionExpansion()
 
 		if (aux == 1) {
 			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
+			m_Owner->m_Score += 100;
 			break;
 		}
 		else if (aux == 2)
@@ -210,6 +214,7 @@ void AWTTestBomb::LeftExplosionExpansion()
 
 		if (aux == 1) {
 			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
+			m_Owner->m_Score += 100;
 			break;
 		}
 		else if (aux == 2)
