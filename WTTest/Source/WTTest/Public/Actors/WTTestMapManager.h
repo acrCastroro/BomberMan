@@ -81,5 +81,8 @@ public:
 	AActor* GetGridActorWithLocation(FVector actorLocation);
 
 	UFUNCTION(BlueprintCallable)
+	void GetWorldPositionsFromGrid(int32 x, int32 y, float& positionX, float& positionY);
+
+	UFUNCTION(BlueprintCallable)
 	void DestroyActorFromGrid(int32 x, int32 y);
 };

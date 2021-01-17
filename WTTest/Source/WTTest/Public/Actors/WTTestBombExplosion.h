@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
 #include "WTTestBombExplosion.generated.h"
 
 UCLASS()
@@ -12,21 +13,39 @@ class WTTEST_API AWTTestBombExplosion : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
-	AWTTestBombExplosion();
+	// --------------------------------------------------------
+	// Constructors
+	// --------------------------------------------------------
+
+	AWTTestBombExplosion(const FObjectInitializer& ObjectInitializer);
+
+	// --------------------------------------------------------
+	// UE4 Functions
+	// --------------------------------------------------------
 
 protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
-	void Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	virtual void Tick(float DeltaTime) override;
+	// --------------------------------------------------------
+	// Class Properties
+	// --------------------------------------------------------
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mesh")
 	class UStaticMeshComponent* m_Mesh;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Collider")
+	USphereComponent* m_Collider;
+
+	// --------------------------------------------------------
+	// Class Functions
+	// --------------------------------------------------------
+
+	UFUNCTION()
+		void Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 
 };

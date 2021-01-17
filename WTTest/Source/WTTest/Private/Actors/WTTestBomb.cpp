@@ -2,6 +2,7 @@
 
 
 #include "Actors/WTTestBomb.h"
+#include "Actors/WTTestBombExplosion.h"
 #include "Characters/WTTestCharacter.h"
 #include "GameModes/WTTestGameMode.h"
 
@@ -14,6 +15,9 @@ AWTTestBomb::AWTTestBomb(const FObjectInitializer& ObjectInitializer) : Super(Ob
 	m_SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
 	RootComponent = m_SphereMesh;
+
+	m_SpawnParameters.Instigator = GetInstigator();
+	m_SpawnParameters.Owner = this;
 }
 
 // Called when the game starts or when spawned
@@ -76,6 +80,13 @@ void AWTTestBomb::UpExplosionExpansion()
 		{
 			break;
 		}
+		
+		FVector spawnLocation = FVector(100.0f);
+		grid->GetWorldPositionsFromGrid(yGridPosition, positionToCheck, spawnLocation.X, spawnLocation.Y);
+
+		AWTTestBombExplosion* spawnedExplosion =
+			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
+		
 
 		gridDisplacement++;
 		positionToCheck--;
@@ -109,6 +120,13 @@ void AWTTestBomb::RightExplosionExpansion()
 		{
 			break;
 		}
+		
+		FVector spawnLocation = FVector(100.0f);
+		grid->GetWorldPositionsFromGrid(positionToCheck, xGridPosition, spawnLocation.X, spawnLocation.Y);
+
+		AWTTestBombExplosion* spawnedExplosion =
+			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
+		
 
 		gridDisplacement++;
 		positionToCheck++;
@@ -127,6 +145,7 @@ void AWTTestBomb::DownExplosionExpansion()
 	int32 gridDisplacement = 0;
 	int32 positionToCheck = xGridPosition + 1;
 
+
 	while (gridDisplacement < m_MaxExplosionTileDistance)
 	{
 
@@ -142,6 +161,14 @@ void AWTTestBomb::DownExplosionExpansion()
 		{
 			break;
 		}
+
+		
+		FVector spawnLocation = FVector(100.0f);;
+		grid->GetWorldPositionsFromGrid(yGridPosition, positionToCheck, spawnLocation.X, spawnLocation.Y);
+
+		AWTTestBombExplosion* spawnedExplosion =
+			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
+		
 
 		gridDisplacement++;
 		positionToCheck++;
@@ -174,6 +201,13 @@ void AWTTestBomb::LeftExplosionExpansion()
 		{
 			break;
 		}
+
+		FVector spawnLocation = FVector(100.0f);
+		grid->GetWorldPositionsFromGrid(positionToCheck, xGridPosition, spawnLocation.X, spawnLocation.Y);
+
+		AWTTestBombExplosion* spawnedExplosion =
+			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
+		
 
 		gridDisplacement++;
 		positionToCheck--;
