@@ -45,7 +45,7 @@ void AWTTestMapManager::CreateGrid()
 	{
 		for (int32 j = 0; j < m_kGridHeight; ++j)
 		{
-			m_Grid[i][j] = FMath::RandRange(0, 0);
+			m_Grid[i][j] = FMath::RandRange(0, 1);
 		}
 	}
 }
@@ -122,14 +122,8 @@ AActor* AWTTestMapManager::GetGridActorWithLocation(FVector actorLocation)
 
 void AWTTestMapManager::GetWorldPositionsFromGrid(int32 x, int32 y, float& positionX, float& positionY)
 {
-	positionX = -(float)((y * 100) + m_XOffset);
+	positionX = -(float)((y * 100));
 	positionY = (float)((x * 100));
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "World X: " + 
-		FString::SanitizeFloat(positionX) + " Wordl Y: " + FString::SanitizeFloat(positionY) +
-		" Grid X: " +
-		FString::FromInt(x) + " Grid Y: " + FString::FromInt(y));
-
 }
 
 void AWTTestMapManager::DestroyActorFromGrid(int32 x, int32 y)

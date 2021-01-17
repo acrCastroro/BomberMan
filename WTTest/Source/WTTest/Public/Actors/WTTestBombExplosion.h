@@ -40,12 +40,17 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Collider")
 	USphereComponent* m_Collider;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values")
+	float m_ExplosionTime = 1.5f;
+
+	FTimerHandle m_TimeToEndHandle;
+
 	// --------------------------------------------------------
 	// Class Functions
 	// --------------------------------------------------------
 
 	UFUNCTION()
-		void Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-
+	void EndExplosion();
 };

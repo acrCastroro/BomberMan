@@ -28,6 +28,13 @@ void AWTTestBombExplosion::BeginPlay()
 	Super::BeginPlay();
 
 	m_Collider->OnComponentBeginOverlap.AddDynamic(this, &AWTTestBombExplosion::Overlap);
+
+	UWorld* world = GetWorld();
+
+	if (IsValid(world))
+	{
+		world->GetTimerManager().SetTimer(m_TimeToEndHandle, this, &AWTTestBombExplosion::EndExplosion, m_ExplosionTime, false);
+	}
 	
 }
 
@@ -50,4 +57,10 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 		}
 
 	}
+}
+
+
+void AWTTestBombExplosion::EndExplosion() 
+{
+	Destroy();
 }

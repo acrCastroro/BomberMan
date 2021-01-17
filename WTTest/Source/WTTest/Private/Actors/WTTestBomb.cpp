@@ -68,7 +68,7 @@ void AWTTestBomb::UpExplosionExpansion()
 	while (gridDisplacement < m_MaxExplosionTileDistance)
 	{
 
-		if (positionToCheck < 0 || positionToCheck > grid->m_kGridHeight) break;
+		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridHeight) break;
 
 		int32 aux = grid->GetGridValue(positionToCheck, yGridPosition);
 
@@ -108,7 +108,7 @@ void AWTTestBomb::RightExplosionExpansion()
 	while (gridDisplacement < m_MaxExplosionTileDistance)
 	{
 
-		if (positionToCheck < 0 || positionToCheck > grid->m_kGridWidth) break;
+		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridWidth) break;
 
 		int32 aux = grid->GetGridValue(xGridPosition, positionToCheck);
 
@@ -149,7 +149,7 @@ void AWTTestBomb::DownExplosionExpansion()
 	while (gridDisplacement < m_MaxExplosionTileDistance)
 	{
 
-		if (positionToCheck < 0 || positionToCheck > grid->m_kGridHeight) break;
+		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridHeight) break;
 
 		int32 aux = grid->GetGridValue(positionToCheck, yGridPosition);
 
@@ -189,7 +189,7 @@ void AWTTestBomb::LeftExplosionExpansion()
 	while (gridDisplacement < m_MaxExplosionTileDistance)
 	{
 
-		if (positionToCheck < 0 || positionToCheck > grid->m_kGridWidth) break;
+		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridWidth) break;
 
 		int32 aux = grid->GetGridValue(xGridPosition, positionToCheck);
 
