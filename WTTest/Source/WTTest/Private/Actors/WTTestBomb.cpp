@@ -41,8 +41,10 @@ void AWTTestBomb::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AWTTestBomb::Explode() 
+void AWTTestBomb::Explode()
 {
+	m_bActive = true;
+
 	AWTTestCharacter* owner = Cast<AWTTestCharacter>(GetOwner());
 
 	check(IsValid(owner));
@@ -52,6 +54,8 @@ void AWTTestBomb::Explode()
 	CheckExplosionsExpansions();
 
 	Destroy();
+
+	SpawnCentralExplosion();
 }
 
 void AWTTestBomb::UpExplosionExpansion()
@@ -80,14 +84,18 @@ void AWTTestBomb::UpExplosionExpansion()
 		{
 			break;
 		}
+		else if (aux == 3)
+		{
+			break;
+		}
 		
-		FVector spawnLocation = FVector(100.0f);
-		grid->GetWorldPositionsFromGrid(yGridPosition, positionToCheck, spawnLocation.X, spawnLocation.Y);
+		FVector spawnLocation =	grid->GetWorldPositionsFromGrid(yGridPosition, positionToCheck);
+
+		grid->SetGridValue(yGridPosition, positionToCheck, 3);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
-		
-
+	
 		gridDisplacement++;
 		positionToCheck--;
 	}
@@ -120,13 +128,17 @@ void AWTTestBomb::RightExplosionExpansion()
 		{
 			break;
 		}
+		else if (aux == 3)
+		{
+			break;
+		}
 		
-		FVector spawnLocation = FVector(100.0f);
-		grid->GetWorldPositionsFromGrid(positionToCheck, xGridPosition, spawnLocation.X, spawnLocation.Y);
+		FVector spawnLocation = grid->GetWorldPositionsFromGrid(positionToCheck, xGridPosition);
+
+		grid->SetGridValue(xGridPosition, positionToCheck, 3);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
-		
 
 		gridDisplacement++;
 		positionToCheck++;
@@ -161,14 +173,17 @@ void AWTTestBomb::DownExplosionExpansion()
 		{
 			break;
 		}
-
+		else if (aux == 3)
+		{
+			break;
+		}
 		
-		FVector spawnLocation = FVector(100.0f);;
-		grid->GetWorldPositionsFromGrid(yGridPosition, positionToCheck, spawnLocation.X, spawnLocation.Y);
+		FVector spawnLocation =	grid->GetWorldPositionsFromGrid(yGridPosition, positionToCheck);
+
+		grid->SetGridValue(positionToCheck, yGridPosition, 3);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
-		
 
 		gridDisplacement++;
 		positionToCheck++;
@@ -201,9 +216,14 @@ void AWTTestBomb::LeftExplosionExpansion()
 		{
 			break;
 		}
+		else if (aux == 3)
+		{
+			break;
+		}
 
-		FVector spawnLocation = FVector(100.0f);
-		grid->GetWorldPositionsFromGrid(positionToCheck, xGridPosition, spawnLocation.X, spawnLocation.Y);
+		FVector spawnLocation = grid->GetWorldPositionsFromGrid(positionToCheck, xGridPosition);
+
+		grid->SetGridValue(xGridPosition, positionToCheck, 3);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
@@ -216,9 +236,25 @@ void AWTTestBomb::LeftExplosionExpansion()
 
 void AWTTestBomb::CheckExplosionsExpansions() 
 {
+
 	UpExplosionExpansion();
 	RightExplosionExpansion();
 	DownExplosionExpansion();
 	LeftExplosionExpansion();
 }
 
+void AWTTestBomb::SpawnCentralExplosion()
+{
+	int32 xGridPosition = 0;
+	int32 yGridPosition = 0;
+	auto grid = m_GameMode->m_MapManager;
+	grid->GetGridValueWithLocation(GetActorLocation(), xGridPosition, yGridPosition);
+	FVector spawnLocation = grid->GetWorldPositionsFromGrid(yGridPosition, xGridPosition);
+
+	grid->SetGridValue(xGridPosition, yGridPosition, 3);
+
+	AWTTestBombExplosion* spawnedExplosion =
+		GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
+
+}
+ 

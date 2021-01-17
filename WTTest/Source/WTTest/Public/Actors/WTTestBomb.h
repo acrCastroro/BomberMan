@@ -63,10 +63,12 @@ public:
 	// Class Functions
 	// --------------------------------------------------------
 
-protected:
-
 	UFUNCTION(BlueprintCallable, Category = "Actions")
 	void Explode();
+
+protected:
+
+
 
 	void UpExplosionExpansion();
 	void RightExplosionExpansion();
@@ -74,5 +76,7 @@ protected:
 	void LeftExplosionExpansion();
 
 	void CheckExplosionsExpansions();
+
+	void SpawnCentralExplosion();
 
 };

@@ -120,10 +120,13 @@ AActor* AWTTestMapManager::GetGridActorWithLocation(FVector actorLocation)
 	return m_ActorsGrid[x][y];
 }
 
-void AWTTestMapManager::GetWorldPositionsFromGrid(int32 x, int32 y, float& positionX, float& positionY)
+FVector AWTTestMapManager::GetWorldPositionsFromGrid(int32 x, int32 y)
 {
-	positionX = -(float)((y * 100));
-	positionY = (float)((x * 100));
+	FVector worldPosition;
+	worldPosition.X = -(float)((y * 100));
+	worldPosition.Y = (float)((x * 100));
+	worldPosition.Z = 100.0f;
+	return worldPosition;
 }
 
 void AWTTestMapManager::DestroyActorFromGrid(int32 x, int32 y)
@@ -131,3 +134,18 @@ void AWTTestMapManager::DestroyActorFromGrid(int32 x, int32 y)
 	m_ActorsGrid[x][y]->Destroy();
 	m_Grid[x][y] = 0;
 }
+
+void AWTTestMapManager::SetGridValue(int32 x, int32 y, int32 value) 
+{
+	m_Grid[x][y] = value;
+}
+
+void AWTTestMapManager::SetGridValueWithActorLocation(FVector actorLocation, int32 value)
+{
+	int32 x = FMath::Abs((actorLocation.X - m_XOffset) / 100.0f);
+	int32 y = (actorLocation.Y + m_YOffset) / 100.0f;
+
+	m_Grid[x][y] = value;
+
+}
+
