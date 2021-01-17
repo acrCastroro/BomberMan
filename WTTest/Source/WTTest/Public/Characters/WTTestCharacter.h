@@ -37,7 +37,7 @@ public:
 	TSubclassOf<class AWTTestBomb> m_Bombs;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")
-	int32 m_NumberOfAvailableBombs = 5;
+	int32 m_NumberOfAvailableBombs = 1;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Score")
 	int32 m_Score = 0;

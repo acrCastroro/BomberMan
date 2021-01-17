@@ -45,7 +45,7 @@ void AWTTestMapManager::CreateGrid()
 	{
 		for (int32 j = 0; j < m_kGridHeight; ++j)
 		{
-			m_Grid[i][j] = FMath::RandRange(0, 0);
+			m_Grid[i][j] = FMath::RandRange(0, 2);
 		}
 	}
 }
@@ -77,11 +77,11 @@ void AWTTestMapManager::SpawnGrid()
 				m_ActorsGrid[i][j] = destructibleWall;
 
 			}
-			/*else if (m_Grid[i][j] == 2) {
+			else if (m_Grid[i][j] == 2) {
 				 spawnedTile = 
 					 GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
 				m_ActorsGrid[i][j] = spawnedTile;
-			}*/
+			}
 			
 			auxSpawnLocation.Y += 100;			
 		}

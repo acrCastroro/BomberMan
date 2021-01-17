@@ -83,7 +83,7 @@ void AWTTestCharacter::PlantBomb() {
 
 		FVector spawnLocation = GetActorLocation();
 		FRotator spawnRotation = GetActorRotation();
-		spawnLocation.Z -= 25.0f;
+		spawnLocation.Z -= 50.0f;
 
 		FActorSpawnParameters spawnParameters;
 		spawnParameters.Instigator = GetInstigator();
