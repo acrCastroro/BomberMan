@@ -54,7 +54,7 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 		AWTTestCharacter* character = Cast<AWTTestCharacter>(OtherActor);
 		if (IsValid(character))
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "Tocado");
+			//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "Tocado");
 		}
 
 		AWTTestBomb* bomb = Cast<AWTTestBomb>(OtherActor);
@@ -73,14 +73,14 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 
 void AWTTestBombExplosion::EndExplosion() 
 {
-	Destroy();
-
 	AWTTestGameMode* gameMode = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
 
 	if (IsValid(gameMode))
 	{
-		gameMode->m_MapManager->SetGridValueWithActorLocation(GetActorLocation(), 0);	
+		gameMode->m_MapManager->SetGridValueWithActorLocation(GetActorLocation(), 0);
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "Cambio Valor");
 	}
 
+	Destroy();
 
 }

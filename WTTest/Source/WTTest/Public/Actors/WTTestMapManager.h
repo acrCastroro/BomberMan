@@ -87,9 +87,6 @@ public:
 	void DestroyActorFromGrid(int32 x, int32 y);
 
 	UFUNCTION(BlueprintCallable)
-	void SetGridValue(int32 x, int32 y, int32 value);
-
-	UFUNCTION(BlueprintCallable)
 	void SetGridValueWithActorLocation(FVector actorLocation, int32 value);
 
 };

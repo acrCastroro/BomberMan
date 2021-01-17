@@ -74,10 +74,11 @@ void AWTTestCharacter::MoveRight(float Value)
 void AWTTestCharacter::PlantBomb() {
 
 	 AWTTestGameMode* gm =  Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
-
-	 //gm->m_MapManager->GetGridValueWithLocation(GetActorLocation(), 0, 0);
-
-	if (m_NumberOfAvailableBombs > 0)
+	 int32 a, b;
+	 
+	 GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::FromInt(gm->m_MapManager->GetGridValueWithLocation(GetActorLocation(), a, b)));
+	
+	 if (m_NumberOfAvailableBombs > 0)
 	{
 
 		FVector spawnLocation = GetActorLocation();
