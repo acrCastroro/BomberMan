@@ -9,6 +9,16 @@
 
 #include "WTTestGameMode.generated.h"
 
+UENUM(BlueprintType)
+enum class GridData : uint8 {
+	kNothing = 0 UMETA(DisplayName = "AddBomb"),
+	kDestructibleWall = 1  UMETA(DisplayName = "AddExplosionExpansion"),
+	kIndesttructibleWall = 2     UMETA(DisplayName = "AddPlayerSpeed"),
+	kPickups = 3					UMETA(DisplayName = "Pickups"),
+
+	kExplosion UMETA(DisplayName = "MaxRange"),
+};
+
 UCLASS(minimalapi)
 class AWTTestGameMode : public AGameModeBase
 {  

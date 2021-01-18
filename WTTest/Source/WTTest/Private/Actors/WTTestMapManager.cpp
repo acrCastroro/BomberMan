@@ -42,11 +42,14 @@ void AWTTestMapManager::Tick(float DeltaTime)
 
 void AWTTestMapManager::CreateGrid() 
 {
+
+	int32 maxRange = (int32)GridData::kExplosion - 1;
+
 	for (int32 i = 0; i < m_kGridWidth; ++i)
 	{
 		for (int32 j = 0; j < m_kGridHeight; ++j)
 		{
-			m_Grid[i][j] = FMath::RandRange(0, 2);
+			m_Grid[i][j] = FMath::RandRange((int32)GridData::kNothing, maxRange);
 		}
 	}
 }
@@ -64,39 +67,51 @@ void AWTTestMapManager::SpawnGrid()
 	spawnParameters.Owner = this;
 
 	int32 mapIndestructibleWallsSpawner = 0;
+	int32 mapPickupsSpawner = 0;
+
+	auxSpawnLocation.Z += 100.0f;
 
 	for (int32 i = 0; i < m_kGridWidth; ++i)
 	{		
 		for (int32 j = 0; j < m_kGridHeight; ++j)
 		{			
-			AWTTestMapTile* spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, auxSpawnLocation, spawnRotation, spawnParameters);
+			AWTTestMapTile* spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, spawnLocation.Z), spawnRotation, spawnParameters);
 			spawnedTile->SetOwner(this);
 
-			if (m_Grid[i][j] == 1)
+			if (m_Grid[i][j] == (int32)GridData::kDestructibleWall)
 			{
 				AWTTestDestructibleWall* destructibleWall =
-					GetWorld()->SpawnActor<AWTTestDestructibleWall>(m_DestructibleWall, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
-				
+					GetWorld()->SpawnActor<AWTTestDestructibleWall>(m_DestructibleWall, auxSpawnLocation, spawnRotation, spawnParameters);
+
 				m_ActorsGrid[i][j] = destructibleWall;
 
 			}
-			else if (m_Grid[i][j] == 2) {
+			else if (m_Grid[i][j] == (int32)GridData::kIndesttructibleWall) {
 
 				if (mapIndestructibleWallsSpawner == 0)
 				{
 					spawnedTile =
-						GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
+						GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, auxSpawnLocation, spawnRotation, spawnParameters);
 					m_ActorsGrid[i][j] = spawnedTile;
 					
 					mapIndestructibleWallsSpawner++;
 				}
 				else
 				{
-					m_Grid[i][j] = 0;
+					m_Grid[i][j] = (int32)GridData::kNothing;
 					mapIndestructibleWallsSpawner++;					
 					if (mapIndestructibleWallsSpawner >= m_SpawnIndestructibleWallsRatio + 1) mapIndestructibleWallsSpawner = 0;					
 				}
 				
+			}
+
+			else if (m_Grid[i][j] == (int32)GridData::kPickups)
+			{
+				AWTTestPickups* PickUp =
+					GetWorld()->SpawnActor<AWTTestPickups>(m_Pickups, auxSpawnLocation, spawnRotation, spawnParameters);
+
+				m_ActorsGrid[i][j] = PickUp;
+
 			}
 			
 			auxSpawnLocation.Y += 100;			
