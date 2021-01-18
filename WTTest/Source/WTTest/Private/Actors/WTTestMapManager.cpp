@@ -78,6 +78,30 @@ void AWTTestMapManager::SpawnGrid()
 			AWTTestMapTile* spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, spawnLocation.Z), spawnRotation, spawnParameters);
 			spawnedTile->SetOwner(this);
 
+			if (i == 0)
+			{
+				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X + 100.0f, auxSpawnLocation.Y, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
+				spawnedTile->SetOwner(this);
+			}
+
+			if (i == m_kGridWidth - 1)
+			{
+				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X - 100.0f, auxSpawnLocation.Y, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
+				spawnedTile->SetOwner(this);
+			}
+
+			if (j == 0)
+			{
+				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y -100.0f, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
+				spawnedTile->SetOwner(this);
+			}
+
+			if (j == m_kGridHeight - 1)
+			{
+				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y + 100.0f, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
+				spawnedTile->SetOwner(this);
+			}
+
 			if (m_Grid[i][j] == (int32)GridData::kDestructibleWall)
 			{
 				AWTTestDestructibleWall* destructibleWall =
@@ -104,16 +128,7 @@ void AWTTestMapManager::SpawnGrid()
 				}
 				
 			}
-			/*
-			else if (m_Grid[i][j] == (int32)GridData::kPickups)
-			{
-				AWTTestPickups* PickUp =
-					GetWorld()->SpawnActor<AWTTestPickups>(m_Pickups, auxSpawnLocation, spawnRotation, spawnParameters);
 
-				m_ActorsGrid[i][j] = PickUp;
-
-			}
-			*/
 			auxSpawnLocation.Y += 100;			
 		}
 

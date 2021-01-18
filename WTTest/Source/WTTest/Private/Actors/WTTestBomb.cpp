@@ -82,11 +82,15 @@ void AWTTestBomb::UpExplosionExpansion()
 			m_Owner->m_Score += 100;
 			break;
 		}
-		else if (aux == 2)
+		else if (aux == (int32)GridData::kIndesttructibleWall)
 		{
 			break;
 		}
-		else if (aux == 3)
+		else if (aux == (int32)GridData::kPickups)
+		{
+			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
+		}
+		else if (aux == (int32)GridData::kExplosion)
 		{
 			break;
 		}
@@ -127,11 +131,15 @@ void AWTTestBomb::RightExplosionExpansion()
 			m_Owner->m_Score += 100;
 			break;
 		}
-		else if (aux == 2)
+		else if (aux == (int32)GridData::kIndesttructibleWall)
 		{
 			break;
 		}
-		else if (aux == 3)
+		else if (aux == (int32)GridData::kPickups)
+		{
+			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
+		}
+		else if (aux == (int32)GridData::kExplosion)
 		{
 			break;
 		}
@@ -173,11 +181,15 @@ void AWTTestBomb::DownExplosionExpansion()
 			m_Owner->m_Score += 100;
 			break;
 		}
-		else if (aux == 2)
+		else if (aux == (int32)GridData::kIndesttructibleWall)
 		{
 			break;
 		}
-		else if (aux == 3)
+		else if (aux == (int32)GridData::kPickups)
+		{
+			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
+		}
+		else if (aux == (int32)GridData::kExplosion)
 		{
 			break;
 		}
@@ -212,16 +224,20 @@ void AWTTestBomb::LeftExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(xGridPosition, positionToCheck);
 
-		if (aux == 1) {
+		if (aux == (int32)GridData::kDestructibleWall) {
 			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
 			m_Owner->m_Score += 100;
 			break;
 		}
-		else if (aux == 2)
+		else if (aux == (int32)GridData::kIndesttructibleWall)
 		{
 			break;
 		}
-		else if (aux == 3)
+		else if (aux == (int32)GridData::kPickups)
+		{
+			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
+		}
+		else if (aux == (int32)GridData::kExplosion)
 		{
 			break;
 		}

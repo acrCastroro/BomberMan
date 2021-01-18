@@ -91,7 +91,7 @@ void AWTTestCharacter::PlantBomb() {
 
 		check(IsValid(m_Bombs));
 		AWTTestBomb* spawnedBomb = GetWorld()->SpawnActor<AWTTestBomb>(m_Bombs, spawnLocation, spawnRotation, spawnParameters);
-		spawnedBomb->SetOwner(this);
+		if(IsValid(spawnedBomb)) spawnedBomb->SetOwner(this);
 
 		m_NumberOfAvailableBombs--;
 
