@@ -5,6 +5,7 @@
 
 #include "Actors/WTTestDestructibleWall.h"
 #include "Actors/WTTestMapTile.h"
+#include "Actors/WTTestPickups.h"
 #include "GameModes/WTTestGameMode.h"
 
 // Sets default values
@@ -62,6 +63,8 @@ void AWTTestMapManager::SpawnGrid()
 	spawnParameters.Instigator = GetInstigator();
 	spawnParameters.Owner = this;
 
+	int32 mapIndestructibleWallsSpawner = 0;
+
 	for (int32 i = 0; i < m_kGridWidth; ++i)
 	{		
 		for (int32 j = 0; j < m_kGridHeight; ++j)
@@ -78,9 +81,22 @@ void AWTTestMapManager::SpawnGrid()
 
 			}
 			else if (m_Grid[i][j] == 2) {
-				 spawnedTile = 
-					 GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
-				m_ActorsGrid[i][j] = spawnedTile;
+
+				if (mapIndestructibleWallsSpawner == 0)
+				{
+					spawnedTile =
+						GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, auxSpawnLocation.Z + 100), spawnRotation, spawnParameters);
+					m_ActorsGrid[i][j] = spawnedTile;
+					
+					mapIndestructibleWallsSpawner++;
+				}
+				else
+				{
+					m_Grid[i][j] = 0;
+					mapIndestructibleWallsSpawner++;					
+					if (mapIndestructibleWallsSpawner >= m_SpawnIndestructibleWallsRatio + 1) mapIndestructibleWallsSpawner = 0;					
+				}
+				
 			}
 			
 			auxSpawnLocation.Y += 100;			

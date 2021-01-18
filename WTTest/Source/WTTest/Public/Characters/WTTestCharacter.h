@@ -39,6 +39,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")
 	int32 m_NumberOfAvailableBombs = 1;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+	int m_MaxExplosionTileDistance = 2;
+
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Score")
 	int32 m_Score = 0;
 

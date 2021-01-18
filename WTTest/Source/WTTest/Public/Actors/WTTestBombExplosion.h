@@ -34,13 +34,13 @@ public:
 	// Class Properties
 	// --------------------------------------------------------
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mesh")
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mesh", meta = (DisplayName = "Mesh"))
 	class UStaticMeshComponent* m_Mesh;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Collider")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Collider", meta = (DisplayName = "Collider"))
 	USphereComponent* m_Collider;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values", meta = (DisplayName = "Seconds To Expode"))
 	float m_ExplosionTime = 1.5f;
 
 	FTimerHandle m_TimeToEndHandle;

@@ -67,6 +67,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
 	TSubclassOf<class AWTTestMapTile> m_Tile;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
+	TSubclassOf<class AWTTestPickups> m_Pickups;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Config|Design Values")
+	int32 m_SpawnIndestructibleWallsRatio = 5;
+
 	// --------------------------------------------------------
 	// Class Functions
 	// --------------------------------------------------------

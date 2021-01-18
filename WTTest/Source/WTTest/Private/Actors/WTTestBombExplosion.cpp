@@ -22,6 +22,8 @@ AWTTestBombExplosion::AWTTestBombExplosion(const FObjectInitializer& ObjectIniti
 	m_Collider->SetupAttachment(RootComponent);
 	m_Collider->SetGenerateOverlapEvents(true);
 
+	m_Collider->SetWorldScale3D(FVector(100.0f));
+
 }
 
 // Called when the game starts or when spawned

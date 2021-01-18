@@ -46,9 +46,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
 	float m_TimeToExplode = 3.0f;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
-	int m_MaxExplosionTileDistance = 3;
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Explosion", meta = (DisplayName = "Bomb Explosion"))
 	TSubclassOf<class AWTTestBombExplosion> m_BombExplosion;
 

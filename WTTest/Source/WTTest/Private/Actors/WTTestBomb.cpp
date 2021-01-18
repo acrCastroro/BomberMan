@@ -70,7 +70,7 @@ void AWTTestBomb::UpExplosionExpansion()
 	int32 gridDisplacement = 0;
 	int32 positionToCheck = xGridPosition - 1;
 
-	while (gridDisplacement < m_MaxExplosionTileDistance)
+	while (gridDisplacement < m_Owner->m_MaxExplosionTileDistance)
 	{
 
 		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridHeight) break;
@@ -115,7 +115,7 @@ void AWTTestBomb::RightExplosionExpansion()
 	int32 gridDisplacement = 0;
 	int32 positionToCheck = yGridPosition + 1;
 
-	while (gridDisplacement < m_MaxExplosionTileDistance)
+	while (gridDisplacement < m_Owner->m_MaxExplosionTileDistance)
 	{
 
 		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridWidth) break;
@@ -161,7 +161,7 @@ void AWTTestBomb::DownExplosionExpansion()
 	int32 positionToCheck = xGridPosition + 1;
 
 
-	while (gridDisplacement < m_MaxExplosionTileDistance)
+	while (gridDisplacement < m_Owner->m_MaxExplosionTileDistance)
 	{
 
 		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridHeight) break;
@@ -205,7 +205,7 @@ void AWTTestBomb::LeftExplosionExpansion()
 	int32 gridDisplacement = 0;
 	int32 positionToCheck = yGridPosition - 1;
 
-	while (gridDisplacement < m_MaxExplosionTileDistance)
+	while (gridDisplacement < m_Owner->m_MaxExplosionTileDistance)
 	{
 
 		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridWidth) break;
