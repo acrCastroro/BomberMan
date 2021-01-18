@@ -91,7 +91,7 @@ void AWTTestBomb::UpExplosionExpansion()
 			break;
 		}
 		
-		FVector spawnLocation =	grid->GetWorldPositionsFromGrid(positionToCheck, yGridPosition);
+		FVector spawnLocation =	grid->GetWorldPositionFromGrid(positionToCheck, yGridPosition);
 
 		grid->SetGridValueWithActorLocation(spawnLocation, 3);
 
@@ -136,7 +136,7 @@ void AWTTestBomb::RightExplosionExpansion()
 			break;
 		}
 		
-		FVector spawnLocation = grid->GetWorldPositionsFromGrid(xGridPosition, positionToCheck);
+		FVector spawnLocation = grid->GetWorldPositionFromGrid(xGridPosition, positionToCheck);
 
 		grid->SetGridValueWithActorLocation(spawnLocation, 3);
 
@@ -182,7 +182,7 @@ void AWTTestBomb::DownExplosionExpansion()
 			break;
 		}
 		
-		FVector spawnLocation =	grid->GetWorldPositionsFromGrid(positionToCheck, yGridPosition);
+		FVector spawnLocation =	grid->GetWorldPositionFromGrid(positionToCheck, yGridPosition);
 
 		grid->SetGridValueWithActorLocation(spawnLocation, 3);
 
@@ -226,7 +226,7 @@ void AWTTestBomb::LeftExplosionExpansion()
 			break;
 		}
 
-		FVector spawnLocation = grid->GetWorldPositionsFromGrid(xGridPosition, positionToCheck);
+		FVector spawnLocation = grid->GetWorldPositionFromGrid(xGridPosition, positionToCheck);
 
 		grid->SetGridValueWithActorLocation(spawnLocation, 3);
 
@@ -254,7 +254,7 @@ void AWTTestBomb::SpawnCentralExplosion()
 	int32 yGridPosition = 0;
 	auto grid = m_GameMode->m_MapManager;
 	grid->GetGridValueWithLocation(GetActorLocation(), xGridPosition, yGridPosition);
-	FVector spawnLocation = grid->GetWorldPositionsFromGrid(xGridPosition, yGridPosition);
+	FVector spawnLocation = grid->GetWorldPositionFromGrid(xGridPosition, yGridPosition);
 
 	grid->SetGridValueWithActorLocation(spawnLocation, 3);
 

@@ -45,19 +45,25 @@ public:
 
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
-	float m_LevelTimer = 120.0;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
 	bool m_bEndGame = false;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
-	AWTTestMapManager* m_MapManager;
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
+	float m_LevelTimer = 120.0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Timers", meta = (DisplayName = "Time To Add Bombs"))
 	float m_SecondsToAddBombs = 30.0f;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|GameModeValues", meta = (DisplayName = "Min number Pickups at start game"))
+	int32 m_MinNumberOfPickupsAtStartGame = 2;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|GameModeValues", meta = (DisplayName = "Max number Pickups at start game"))
+	int32 m_MaxNumberOfPickupsAtStartGame = 6;
+
 	FTimerHandle m_TimeToAddBombsToPlayersHandle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
+	AWTTestMapManager* m_MapManager;
 
 	UFUNCTION(BlueprintCallable, Category = "GameProperties|Getters")
 	int GetTimeRemainingToEndGame() const;

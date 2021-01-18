@@ -46,6 +46,9 @@ public:
 
 	void SpawnGrid();
 
+	UFUNCTION()
+	void SpawnStartGamePickups();
+
 	// --------------------------------------------------------
 	// Class Properties
 	// --------------------------------------------------------
@@ -87,12 +90,17 @@ public:
 	AActor* GetGridActorWithLocation(FVector actorLocation);
 
 	UFUNCTION(BlueprintCallable)
-	FVector GetWorldPositionsFromGrid(int32 x, int32 y);
+	FVector GetWorldPositionFromGrid(int32 x, int32 y);
 
 	UFUNCTION(BlueprintCallable)
 	void DestroyActorFromGrid(int32 x, int32 y);
 
 	UFUNCTION(BlueprintCallable)
 	void SetGridValueWithActorLocation(FVector actorLocation, int32 value);
+
+	UFUNCTION(BlueprintCallable)
+	void SetGridValue(int32 x, int32 y, int32 value);
+
+
 
 };
