@@ -36,12 +36,18 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Bombs", meta = (DisplayName = "Bombs"))
 	TSubclassOf<class AWTTestBomb> m_Bombs;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Bombs")
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
 	int32 m_NumberOfAvailableBombs = 1;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
-	int m_MaxExplosionTileDistance = 2;
+	int32 m_MaxNumberOfAvailableBombs = 5;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+	int m_CurrentExplosionTileDistance = 2;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+	int m_MaxExplosionTileDistance = 5;
+	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Score")
 	int32 m_Score = 0;
 
