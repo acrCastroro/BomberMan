@@ -76,31 +76,29 @@ void AWTTestMapManager::SpawnGrid()
 		for (int32 j = 0; j < m_kGridHeight; ++j)
 		{			
 			AWTTestMapTile* spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y, spawnLocation.Z), spawnRotation, spawnParameters);
-			spawnedTile->SetOwner(this);
+			
 
 			if (i == 0)
 			{
 				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X + 100.0f, auxSpawnLocation.Y, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
-				spawnedTile->SetOwner(this);
 			}
 
 			if (i == m_kGridWidth - 1)
 			{
 				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X - 100.0f, auxSpawnLocation.Y, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
-				spawnedTile->SetOwner(this);
 			}
 
 			if (j == 0)
 			{
 				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y -100.0f, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
-				spawnedTile->SetOwner(this);
 			}
 
 			if (j == m_kGridHeight - 1)
 			{
 				spawnedTile = GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, FVector(auxSpawnLocation.X, auxSpawnLocation.Y + 100.0f, spawnLocation.Z + 100.0f), spawnRotation, spawnParameters);
-				spawnedTile->SetOwner(this);
 			}
+
+      spawnedTile->SetOwner(this);
 
 			if (m_Grid[i][j] == (int32)GridData::kDestructibleWall)
 			{
@@ -112,21 +110,16 @@ void AWTTestMapManager::SpawnGrid()
 			}
 			else if (m_Grid[i][j] == (int32)GridData::kIndesttructibleWall) {
 
-				if (mapIndestructibleWallsSpawner == 0)
+				if (mapIndestructibleWallsSpawner % m_SpawnIndestructibleWallsRatio == 0)
 				{
-					spawnedTile =
-						GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, auxSpawnLocation, spawnRotation, spawnParameters);
+					spawnedTile =	GetWorld()->SpawnActor<AWTTestMapTile>(m_Tile, auxSpawnLocation, spawnRotation, spawnParameters);
 					m_ActorsGrid[i][j] = spawnedTile;
-					
-					mapIndestructibleWallsSpawner++;
 				}
 				else
 				{
-					m_Grid[i][j] = (int32)GridData::kNothing;
-					mapIndestructibleWallsSpawner++;					
-					if (mapIndestructibleWallsSpawner >= m_SpawnIndestructibleWallsRatio + 1) mapIndestructibleWallsSpawner = 0;					
+					m_Grid[i][j] = (int32)GridData::kNothing;												
 				}
-				
+        mapIndestructibleWallsSpawner++;
 			}
 
 			auxSpawnLocation.Y += 100;			

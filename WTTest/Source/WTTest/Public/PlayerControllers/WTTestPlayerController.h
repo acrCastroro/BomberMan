@@ -28,6 +28,8 @@ class WTTEST_API AWTTestPlayerController : public APlayerController
 	// --------------------------------------------------------
 
 protected:
+
+  virtual void BeginPlay() override;
 	
 	virtual void SetupInputComponent() override;
 
@@ -40,13 +42,22 @@ protected:
 protected:
 
 	UFUNCTION()
-	void PlayerMoveForward(float value);
+	void Player1MoveForward(float value);
 
 	UFUNCTION()
-	void PlayerMoveRight(float value);
+	void Player1MoveRight(float value);
 
 	UFUNCTION()
-	void PlayerPlantBomb();
+	void Player1PlantBomb();
+
+  UFUNCTION()
+    void Player2MoveForward(float value);
+
+  UFUNCTION()
+    void Player2MoveRight(float value);
+
+  UFUNCTION()
+    void Player2PlantBomb();
 
 	// --------------------------------------------------------
 	// Class Properties
@@ -55,6 +66,9 @@ protected:
 protected:
 
 	UPROPERTY()
-	AWTTestCharacter* m_Character;
+	AWTTestCharacter* m_Character1;
+
+  UPROPERTY()
+    AWTTestCharacter* m_Character2;
 	
 };
