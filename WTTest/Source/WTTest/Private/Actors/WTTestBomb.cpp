@@ -37,6 +37,7 @@ void AWTTestBomb::BeginPlay()
 	if (IsValid(world)) 
 	{
 		world->GetTimerManager().SetTimer(m_TimeToExplodeHandle, this, &AWTTestBomb::Explode, m_TimeToExplode, false);
+    world->GetTimerManager().SetTimer(m_TimeToGrowHandle, this, &AWTTestBomb::Grow, m_TimeToGrow, true);
 	}
 	
 }
@@ -58,6 +59,11 @@ void AWTTestBomb::Explode()
 	Destroy();
 
 	SpawnCentralExplosion();
+}
+
+void AWTTestBomb::Grow()
+{
+  m_SphereMesh->SetRelativeScale3D(m_SphereMesh->GetRelativeScale3D() + FVector(.05f));
 }
 
 void AWTTestBomb::UpExplosionExpansion()

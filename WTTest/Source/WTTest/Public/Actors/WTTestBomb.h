@@ -45,11 +45,14 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
 	float m_TimeToExplode = 3.0f;
+  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+   float m_TimeToGrow = 1.0f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Explosion", meta = (DisplayName = "Bomb Explosion"))
 	TSubclassOf<class AWTTestBombExplosion> m_BombExplosion;
 
 	FTimerHandle m_TimeToExplodeHandle;
+  FTimerHandle m_TimeToGrowHandle;
 	   
 	bool m_bActive = false;
 
@@ -65,6 +68,7 @@ public:
 
 protected:
 
+  void Grow();
 
 	void UpExplosionExpansion();
 	void RightExplosionExpansion();

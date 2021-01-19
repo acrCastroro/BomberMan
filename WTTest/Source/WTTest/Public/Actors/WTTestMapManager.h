@@ -79,6 +79,9 @@ public:
 	// --------------------------------------------------------
 	// Class Functions
 	// --------------------------------------------------------
+
+  void SpawnGridWalls(int32 gridX, int32 gridY, FVector auxSpawnLocation, float zLocation, FRotator spawnRotation, FActorSpawnParameters spawnParameters);
+
 	UFUNCTION(BlueprintCallable)
 	int32 GetGridValue(int32 x, int32 y);
 	UFUNCTION(BlueprintCallable)

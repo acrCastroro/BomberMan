@@ -37,15 +37,14 @@ void AWTTestPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-  
+  //Player1 Input
 	InputComponent->BindAxis("P1MoveForward", this, &AWTTestPlayerController::Player1MoveForward);
 	InputComponent->BindAxis("P1MoveRight", this, &AWTTestPlayerController::Player1MoveRight);
-
 	InputComponent->BindAction("P1PlantBomb", IE_Pressed, this, &AWTTestPlayerController::Player1PlantBomb);
-
+  
+  //Player2 Input
   InputComponent->BindAxis("P2MoveForward", this, &AWTTestPlayerController::Player2MoveForward);
   InputComponent->BindAxis("P2MoveRight", this, &AWTTestPlayerController::Player2MoveRight);
-
   InputComponent->BindAction("P2PlantBomb", IE_Pressed, this, &AWTTestPlayerController::Player2PlantBomb);
 
 }
