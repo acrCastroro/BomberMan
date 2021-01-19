@@ -4,6 +4,7 @@
 
 #include "Actors/WTTestBomb.h"
 #include "GameModes/WTTestGameMode.h"
+#include "GameInstance/WTTestGameInstance.h"
 
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
@@ -36,8 +37,23 @@ AWTTestCharacter::AWTTestCharacter()
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+   //m_Score =
+
+  //auto gm = Cast<UWTTestGameInstance>(GetWorld()->GetGameInstance());
+  //if(IsValid(gm))
+  //m_Score = gm->m_Player1Score;
+
+}
+
+void AWTTestCharacter::BeginPlay()
+{
+
+  Super::BeginPlay();
+
+  auto gm = Cast<UWTTestGameInstance>(GetWorld()->GetGameInstance());
+  if(IsValid(gm))
+  m_Score = gm->m_Player1Score;
+
 }
 
 //////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@
 #include "Actors/WTTestBomb.h"
 #include "Actors/WTTestBombExplosion.h"
 #include "Characters/WTTestCharacter.h"
+#include "Kismet/GameplayStatics.h"
 #include "GameModes/WTTestGameMode.h"
 
 // Sets default values
@@ -97,7 +98,7 @@ void AWTTestBomb::UpExplosionExpansion()
 		
 		FVector spawnLocation =	grid->GetWorldPositionFromGrid(positionToCheck, yGridPosition);
 
-		grid->SetGridValueWithActorLocation(spawnLocation, 3);
+		grid->SetGridValueWithActorLocation(spawnLocation, (int32)GridData::kExplosion);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
@@ -146,7 +147,7 @@ void AWTTestBomb::RightExplosionExpansion()
 		
 		FVector spawnLocation = grid->GetWorldPositionFromGrid(xGridPosition, positionToCheck);
 
-		grid->SetGridValueWithActorLocation(spawnLocation, 3);
+		grid->SetGridValueWithActorLocation(spawnLocation, (int32)GridData::kExplosion);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
@@ -169,7 +170,7 @@ void AWTTestBomb::DownExplosionExpansion()
 	int32 positionToCheck = xGridPosition + 1;
 
 
-	while (gridDisplacement < m_Owner->m_MaxExplosionTileDistance)
+	while (gridDisplacement < m_Owner->m_CurrentExplosionTileDistance)
 	{
 
 		if (positionToCheck < 0 || positionToCheck >= grid->m_kGridHeight) break;
@@ -196,7 +197,7 @@ void AWTTestBomb::DownExplosionExpansion()
 		
 		FVector spawnLocation =	grid->GetWorldPositionFromGrid(positionToCheck, yGridPosition);
 
-		grid->SetGridValueWithActorLocation(spawnLocation, 3);
+	    grid->SetGridValueWithActorLocation(spawnLocation, (int32)GridData::kExplosion);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
@@ -244,7 +245,7 @@ void AWTTestBomb::LeftExplosionExpansion()
 
 		FVector spawnLocation = grid->GetWorldPositionFromGrid(xGridPosition, positionToCheck);
 
-		grid->SetGridValueWithActorLocation(spawnLocation, 3);
+		grid->SetGridValueWithActorLocation(spawnLocation, (int32)GridData::kExplosion);
 
 		AWTTestBombExplosion* spawnedExplosion =
 			GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);

@@ -25,10 +25,10 @@ void AWTTestPlayerController::SetupInputComponent()
 
 	Super::SetupInputComponent();
 
-	InputComponent->BindAxis("P1MoveForward", this, &AWTTestPlayerController::Player1MoveForward);
-	InputComponent->BindAxis("P1MoveRight", this, &AWTTestPlayerController::Player1MoveRight);
+	InputComponent->BindAxis("P1MoveForward", this, &AWTTestPlayerController::PlayerMoveForward);
+	InputComponent->BindAxis("P1MoveRight", this, &AWTTestPlayerController::PlayerMoveRight);
 
-	InputComponent->BindAction("P1PlantBomb", IE_Pressed, this, &AWTTestPlayerController::Player1PlantBomb);
+	InputComponent->BindAction("P1PlantBomb", IE_Pressed, this, &AWTTestPlayerController::PlayerPlantBomb);
 
 }
 
@@ -43,7 +43,7 @@ void AWTTestPlayerController::OnPossess(APawn* InPawn)
 // Input Functions
 // --------------------------------------------------------
 
-void AWTTestPlayerController::Player1MoveForward(float value) 
+void AWTTestPlayerController::PlayerMoveForward(float value) 
 {
 	if (IsValid(m_Character) && FMath::IsNearlyZero(value) == false)
 	{
@@ -51,7 +51,7 @@ void AWTTestPlayerController::Player1MoveForward(float value)
 	}
 }
 
-void AWTTestPlayerController::Player1MoveRight(float value) 
+void AWTTestPlayerController::PlayerMoveRight(float value) 
 {
 	if (IsValid(m_Character) && FMath::IsNearlyZero(value) == false)
 	{
@@ -59,7 +59,7 @@ void AWTTestPlayerController::Player1MoveRight(float value)
 	}
 }
 
-void AWTTestPlayerController::Player1PlantBomb() 
+void AWTTestPlayerController::PlayerPlantBomb() 
 {
 	if (IsValid(m_Character)) 
 	{

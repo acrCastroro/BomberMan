@@ -40,13 +40,13 @@ protected:
 protected:
 
 	UFUNCTION()
-	void Player1MoveForward(float value);
+	void PlayerMoveForward(float value);
 
 	UFUNCTION()
-	void Player1MoveRight(float value);
+	void PlayerMoveRight(float value);
 
 	UFUNCTION()
-	void Player1PlantBomb();
+	void PlayerPlantBomb();
 
 	// --------------------------------------------------------
 	// Class Properties

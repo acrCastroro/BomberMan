@@ -25,6 +25,8 @@ public:
 
 public:
 
+  virtual void BeginPlay() override;
+
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 
@@ -43,10 +45,10 @@ public:
 	int32 m_MaxNumberOfAvailableBombs = 5;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
-	int m_CurrentExplosionTileDistance = 2;
+	int32 m_CurrentExplosionTileDistance = 2;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
-	int m_MaxExplosionTileDistance = 5;
+	int32 m_MaxExplosionTileDistance = 8;
 	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Score")
 	int32 m_Score = 0;
