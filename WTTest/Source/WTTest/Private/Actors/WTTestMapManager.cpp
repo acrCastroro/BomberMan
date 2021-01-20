@@ -189,16 +189,6 @@ void AWTTestMapManager::SpawnStartGamePickupsAndPlayerStarts()
     spawnLocation.Z += 100.0f;
 
     players[i]->SetActorLocation(spawnLocation);
-    /*
-    APlayerController* pController = UGameplayStatics::GetPlayerController(GetWorld(), i);
-    if (IsValid(pController)) 
-    {
-      APawn* controlledPawn = pController->GetPawn();
-      if (IsValid(controlledPawn)) controlledPawn->SetActorLocation(spawnLocation);
-    }*/
-
-    GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::FromInt(players.Num()));
-
   }
   
 }

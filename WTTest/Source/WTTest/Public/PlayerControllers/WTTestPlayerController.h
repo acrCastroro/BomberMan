@@ -39,6 +39,9 @@ protected:
 	// Input Functions
 	// --------------------------------------------------------
 
+  UFUNCTION(BlueprintImplementableEvent)
+  void SetCharactersMaterials();
+
 protected:
 
 	UFUNCTION()
@@ -65,10 +68,10 @@ protected:
 
 protected:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Players", meta = (DisplayName = "Player1"))
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Players", meta = (DisplayName = "Player1"))
 	AWTTestCharacter* m_Character1;
 
-  UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Players", meta = (DisplayName = "Player2"))
+  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Players", meta = (DisplayName = "Player2"))
   AWTTestCharacter* m_Character2;
 	
 };

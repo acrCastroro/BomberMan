@@ -30,6 +30,8 @@ void AWTTestPlayerController::BeginPlay()
   m_Character1 = Cast<AWTTestCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 
   m_Character2 = Cast<AWTTestCharacter>(UGameplayStatics::GetPlayerCharacter(this, 1));
+
+  SetCharactersMaterials();
 }
 
 
