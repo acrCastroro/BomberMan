@@ -68,6 +68,9 @@ public:
   UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "PlayersInGame"))
   TArray<AActor*> m_Players;
 
+  UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "NumberOfPlayersInGame"))
+  int32 m_NumberOfPlayersInGame = 2;
+
 	UFUNCTION(BlueprintCallable, Category = "GameProperties|Getters")
 	int32 GetTimeRemainingToEndGame() const;
 

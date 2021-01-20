@@ -30,10 +30,11 @@ void AWTTestGameMode::BeginPlay()
 
   check(IsValid(world));
   
-  UGameplayStatics::GetAllActorsOfClass(world, AWTTestCharacter::StaticClass(), m_Players);
-  
   UGameplayStatics::CreatePlayer(world, 0, true);
   UGameplayStatics::CreatePlayer(world, 1, true);
+
+  UGameplayStatics::GetAllActorsOfClass(world, AWTTestCharacter::StaticClass(), m_Players);
+ 
   
 }
 

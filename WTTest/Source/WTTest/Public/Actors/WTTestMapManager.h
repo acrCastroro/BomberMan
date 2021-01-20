@@ -7,6 +7,7 @@
 // --------------------------------------------------------
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerStart.h"
 
 // --------------------------------------------------------
 // Own Includes
@@ -39,17 +40,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// --------------------------------------------------------
-	// Class Functions
-	// --------------------------------------------------------
-
-	void CreateGrid();
-
-	void SpawnGrid();
-
-	UFUNCTION()
-	void SpawnStartGamePickups();
-
-	// --------------------------------------------------------
 	// Class Properties
 	// --------------------------------------------------------
 
@@ -74,7 +64,7 @@ public:
 	TSubclassOf<class AWTTestPickups> m_Pickups;
 
   UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
-  TSubclassOf<class APlayerStart> m_PlayerStarts;
+  TSubclassOf<APlayerStart> m_PlayerStarts;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Config|Design Values")
 	int32 m_SpawnIndestructibleWallsRatio = 5;
@@ -83,7 +73,13 @@ public:
 	// Class Functions
 	// --------------------------------------------------------
 
+  void CreateGrid();
+
+  void SpawnGrid();
+
   void SpawnGridWalls(int32 gridX, int32 gridY, FVector auxSpawnLocation, float zLocation, FRotator spawnRotation, FActorSpawnParameters spawnParameters);
+
+  void SpawnStartGamePickupsAndPlayerStarts();
 
 	UFUNCTION(BlueprintCallable)
 	int32 GetGridValue(int32 x, int32 y);

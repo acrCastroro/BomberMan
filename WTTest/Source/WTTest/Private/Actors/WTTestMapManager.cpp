@@ -7,6 +7,9 @@
 #include "Actors/WTTestMapTile.h"
 #include "Actors/WTTestPickups.h"
 #include "GameModes/WTTestGameMode.h"
+#include "Characters/WTTestCharacter.h"
+
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AWTTestMapManager::AWTTestMapManager(const FObjectInitializer& ObjectInitializer)
@@ -107,7 +110,7 @@ void AWTTestMapManager::SpawnGrid()
 		auxSpawnLocation.Y = spawnLocation.Y;
 	}
 
-	SpawnStartGamePickups();
+  SpawnStartGamePickupsAndPlayerStarts();
 
 }
 
@@ -141,7 +144,7 @@ void AWTTestMapManager::SpawnGridWalls(int32 gridX, int32 gridY, FVector auxSpaw
 
 }
 
-void AWTTestMapManager::SpawnStartGamePickups() 
+void AWTTestMapManager::SpawnStartGamePickupsAndPlayerStarts()
 {
 	AWTTestGameMode* gm = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
 
@@ -155,8 +158,8 @@ void AWTTestMapManager::SpawnStartGamePickups()
 
 	int32 x = 0;
 	int32 y = 0;
-
-	for (int32 i = 0; i < range; ++i)
+  int32 i = 0;
+	for (i = 0; i < range; ++i)
 	{
 		x = FMath::RandRange(0, m_kGridWidth - 1);
 		y = FMath::RandRange(0, m_kGridHeight - 1);		
@@ -169,8 +172,35 @@ void AWTTestMapManager::SpawnStartGamePickups()
 
 		m_ActorsGrid[x][y] = PickUp;
 		m_Grid[x][y] = (int32)GridData::kPickups;
-		
 	}
+  
+  TArray<AActor*> players;
+  UGameplayStatics::GetAllActorsOfClass(GetWorld(), AWTTestCharacter::StaticClass(), players);
+
+  for (i = 0; i < players.Num(); ++i)
+  {
+
+    x = FMath::RandRange(0, m_kGridWidth - 1);
+    y = FMath::RandRange(0, m_kGridHeight - 1);
+
+    DestroyActorFromGrid(x, y);
+    
+    FVector spawnLocation = GetWorldPositionFromGrid(x, y);
+    spawnLocation.Z += 100.0f;
+
+    players[i]->SetActorLocation(spawnLocation);
+    /*
+    APlayerController* pController = UGameplayStatics::GetPlayerController(GetWorld(), i);
+    if (IsValid(pController)) 
+    {
+      APawn* controlledPawn = pController->GetPawn();
+      if (IsValid(controlledPawn)) controlledPawn->SetActorLocation(spawnLocation);
+    }*/
+
+    GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::FromInt(players.Num()));
+
+  }
+  
 }
 
 int32 AWTTestMapManager::GetGridValue(int32 x, int32 y) 
@@ -224,7 +254,6 @@ void AWTTestMapManager::SetGridValueWithActorLocation(FVector actorLocation, int
 
 	m_Grid[x][y] = value;
 }
-
 
 void AWTTestMapManager::SetGridValue(int32 x, int32 y, int32 value) 
 {
