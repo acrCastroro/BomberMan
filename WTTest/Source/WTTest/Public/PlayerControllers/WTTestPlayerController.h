@@ -65,10 +65,10 @@ protected:
 
 protected:
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Players", meta = (DisplayName = "Player1"))
 	AWTTestCharacter* m_Character1;
 
-  UPROPERTY()
-    AWTTestCharacter* m_Character2;
+  UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Players", meta = (DisplayName = "Player2"))
+  AWTTestCharacter* m_Character2;
 	
 };

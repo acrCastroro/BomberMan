@@ -6,6 +6,8 @@
 #include "Actors/WTTestBomb.h"
 #include "GameModes/WTTestGameMode.h"
 
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 AWTTestBombExplosion::AWTTestBombExplosion(const FObjectInitializer& ObjectInitializer) 
@@ -23,6 +25,8 @@ AWTTestBombExplosion::AWTTestBombExplosion(const FObjectInitializer& ObjectIniti
 	m_Collider->SetGenerateOverlapEvents(true);
 
 	m_Collider->SetWorldScale3D(FVector(100.0f));
+
+  m_DamageType = UDamageType::StaticClass();
 
 }
 
@@ -51,13 +55,9 @@ void AWTTestBombExplosion::Tick(float DeltaTime)
 
 void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+  GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, OtherActor->GetName());
 	if ((OtherActor != nullptr) && (OtherActor != this))
 	{
-		AWTTestCharacter* character = Cast<AWTTestCharacter>(OtherActor);
-		if (IsValid(character))
-		{
-			//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "Tocado");
-		}
 
 		AWTTestBomb* bomb = Cast<AWTTestBomb>(OtherActor);
 		if (IsValid(bomb))
@@ -68,6 +68,12 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 			bomb->Explode();
 			}
 		}
+
+    AWTTestCharacter* character = Cast<AWTTestCharacter>(OtherActor);
+    if (IsValid(character))
+    {     
+        UGameplayStatics::ApplyDamage(character, 110.0f, GetInstigatorController(), this, m_DamageType);
+    }
 
 	}
 }

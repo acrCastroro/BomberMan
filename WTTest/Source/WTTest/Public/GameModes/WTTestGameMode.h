@@ -45,7 +45,7 @@ public:
 
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "EndGame"))
 	bool m_bEndGame = false;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
@@ -65,8 +65,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
 	AWTTestMapManager* m_MapManager;
 
+  UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "PlayersInGame"))
+  TArray<AActor*> m_Players;
+
 	UFUNCTION(BlueprintCallable, Category = "GameProperties|Getters")
-	int GetTimeRemainingToEndGame() const;
+	int32 GetTimeRemainingToEndGame() const;
 
 	UFUNCTION()
 	void AddBombsToPlayers();

@@ -56,6 +56,24 @@ void AWTTestCharacter::BeginPlay()
 
 }
 
+float AWTTestCharacter::TakeDamage(float DamageTaken, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+  const float kBaseTakeDamage = Super::TakeDamage(DamageTaken, DamageEvent, EventInstigator, DamageCauser);
+
+  m_CurrentHealth -= kBaseTakeDamage;
+
+  if (m_CurrentHealth <= 0.0f)
+  {
+    //GetMesh()->SetVisibility(false);
+    m_Alive = false;
+    AWTTestGameMode* gm = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
+    gm->m_bEndGame = true;
+  }
+
+  return DamageTaken;
+}
+
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 void AWTTestCharacter::MoveForward(float Value)

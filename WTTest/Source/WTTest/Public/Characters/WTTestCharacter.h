@@ -27,6 +27,8 @@ public:
 
   virtual void BeginPlay() override;
 
+  virtual float TakeDamage(float DamageTaken, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 
@@ -49,9 +51,19 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
 	int32 m_MaxExplosionTileDistance = 8;
+
+  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+  float m_MaxHealth = 100.0f;
+
+  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+  float m_CurrentHealth = m_MaxHealth;
 	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Score")
 	int32 m_Score = 0;
+
+  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|State")
+  bool m_Alive = true;
+
 
 protected:
 

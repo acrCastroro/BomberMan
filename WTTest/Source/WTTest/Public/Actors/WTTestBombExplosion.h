@@ -43,6 +43,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values", meta = (DisplayName = "Seconds To Expode"))
 	float m_ExplosionTime = 1.5f;
 
+  UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config|DamageType")
+  TSubclassOf<class UDamageType> m_DamageType;
+
 	FTimerHandle m_TimeToEndHandle;
 
 	// --------------------------------------------------------

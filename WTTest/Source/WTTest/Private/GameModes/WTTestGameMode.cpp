@@ -5,6 +5,8 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
+#include "Characters/WTTestCharacter.h"
+
 AWTTestGameMode::AWTTestGameMode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	// set default pawn class to our Blueprinted character
@@ -20,17 +22,23 @@ AWTTestGameMode::AWTTestGameMode(const FObjectInitializer& ObjectInitializer) : 
 
 void AWTTestGameMode::BeginPlay()
 {
-
 	Super::BeginPlay();
 
 	GetWorld()->GetTimerManager().SetTimer(m_TimeToAddBombsToPlayersHandle, this, &AWTTestGameMode::AddBombsToPlayers, m_SecondsToAddBombs, true);
+  
+  UWorld* world = GetWorld();
 
-
+  check(IsValid(world));
+  
+  UGameplayStatics::GetAllActorsOfClass(world, AWTTestCharacter::StaticClass(), m_Players);
+  
+  UGameplayStatics::CreatePlayer(world, 0, true);
+  UGameplayStatics::CreatePlayer(world, 1, true);
+  
 }
 
 void AWTTestGameMode::Tick(float DeltaSeconds) 
 {
-
 	Super::Tick(DeltaSeconds);
 
 	m_LevelTimer -= DeltaSeconds;
@@ -40,25 +48,20 @@ void AWTTestGameMode::Tick(float DeltaSeconds)
 		m_LevelTimer = 0.0f;
 		m_bEndGame = true;	
 	}
-
 }
 
-int AWTTestGameMode::GetTimeRemainingToEndGame() const
+int32 AWTTestGameMode::GetTimeRemainingToEndGame() const
 {
-	return (int)m_LevelTimer;
+	return (int32)m_LevelTimer;
 }
 
 void AWTTestGameMode::AddBombsToPlayers()
 {
-
-	TArray<AActor*> FoundActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AWTTestCharacter::StaticClass(), FoundActors);
-
-	for (int i = 0; i < FoundActors.Num(); ++i)
+  
+	for (int i = 0; i < m_Players.Num(); ++i)
 	{
-		AWTTestCharacter* player = Cast<AWTTestCharacter>(FoundActors[i]);
+		AWTTestCharacter* player = Cast<AWTTestCharacter>(m_Players[i]);
 		check(IsValid(player));
 		player->m_NumberOfAvailableBombs += 1;
 	}
-
 }

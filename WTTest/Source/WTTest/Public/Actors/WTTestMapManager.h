@@ -73,6 +73,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
 	TSubclassOf<class AWTTestPickups> m_Pickups;
 
+  UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Other_Actors")
+  TSubclassOf<class APlayerStart> m_PlayerStarts;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Config|Design Values")
 	int32 m_SpawnIndestructibleWallsRatio = 5;
 

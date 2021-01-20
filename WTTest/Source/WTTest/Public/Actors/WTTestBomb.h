@@ -46,7 +46,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
 	float m_TimeToExplode = 3.0f;
   UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
-   float m_TimeToGrow = 1.0f;
+  float m_TimeToGrow = 1.0f;
+  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+  float m_Damage = 110.0f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Explosion", meta = (DisplayName = "Bomb Explosion"))
 	TSubclassOf<class AWTTestBombExplosion> m_BombExplosion;
