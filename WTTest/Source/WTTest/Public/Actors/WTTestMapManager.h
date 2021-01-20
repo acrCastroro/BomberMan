@@ -81,6 +81,8 @@ public:
 
   void SpawnStartGamePickupsAndPlayerStarts();
 
+  void CheckPlayerSpawnValidity(int32 x, int32 y);
+
 	UFUNCTION(BlueprintCallable)
 	int32 GetGridValue(int32 x, int32 y);
 	UFUNCTION(BlueprintCallable)
