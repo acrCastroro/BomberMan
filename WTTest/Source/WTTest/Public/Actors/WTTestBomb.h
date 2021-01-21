@@ -81,6 +81,8 @@ protected:
 
 	void SpawnCentralExplosion();
 
+  void DestroyWallAtGridPosition(int32 xPosition, int32 yPosition);
+
 	// --------------------------------------------------------
 	// Protected Properties
 	// --------------------------------------------------------

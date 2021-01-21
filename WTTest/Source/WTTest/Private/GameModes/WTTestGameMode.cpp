@@ -35,7 +35,12 @@ void AWTTestGameMode::BeginPlay()
 
   UGameplayStatics::GetAllActorsOfClass(world, AWTTestCharacter::StaticClass(), m_Players);
  
-  
+  FActorSpawnParameters spawnParameters;
+  spawnParameters.Instigator = GetInstigator();
+  spawnParameters.Owner = this;
+  check(IsValid(m_MapManagerBP));
+  m_MapManager = GetWorld()->SpawnActor<AWTTestMapManager>(m_MapManagerBP, FVector(0.0f), FRotator(0.0f), spawnParameters);
+  check(IsValid(m_MapManager));
 }
 
 void AWTTestGameMode::Tick(float DeltaSeconds) 

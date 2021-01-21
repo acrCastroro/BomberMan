@@ -2,10 +2,13 @@
 
 
 #include "Actors/WTTestBomb.h"
+
 #include "Actors/WTTestBombExplosion.h"
+#include "Actors/WTTestDestructibleWall.h"
 #include "Characters/WTTestCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameModes/WTTestGameMode.h"
+
 
 
 // Sets default values
@@ -85,8 +88,7 @@ void AWTTestBomb::UpExplosionExpansion()
 		int32 aux = grid->GetGridValue(positionToCheck, yGridPosition);
 
 		if (aux == (int32)GridData::kDestructibleWall) {
-			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
-			m_Owner->m_Score += 100;
+      DestroyWallAtGridPosition(positionToCheck, yGridPosition);
 			break;
 		}
 		else if (aux == (int32)GridData::kIndesttructibleWall)
@@ -132,9 +134,9 @@ void AWTTestBomb::RightExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(xGridPosition, positionToCheck);
 
-		if (aux == (int32)GridData::kDestructibleWall) {
-			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
-			m_Owner->m_Score += 100;
+		if (aux == (int32)GridData::kDestructibleWall) 
+    {
+      DestroyWallAtGridPosition(xGridPosition, positionToCheck);
 			break;
 		}
 		else if (aux == (int32)GridData::kIndesttructibleWall)
@@ -181,9 +183,9 @@ void AWTTestBomb::DownExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(positionToCheck, yGridPosition);
 
-		if (aux == (int32)GridData::kDestructibleWall) {
-			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
-			m_Owner->m_Score += 100;
+		if (aux == (int32)GridData::kDestructibleWall) 
+    {
+      DestroyWallAtGridPosition(positionToCheck, yGridPosition);
 			break;
 		}
 		else if (aux == (int32)GridData::kIndesttructibleWall)
@@ -229,9 +231,9 @@ void AWTTestBomb::LeftExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(xGridPosition, positionToCheck);
 
-		if (aux == (int32)GridData::kDestructibleWall) {
-			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
-			m_Owner->m_Score += 100;
+		if (aux == (int32)GridData::kDestructibleWall) 
+    {
+      DestroyWallAtGridPosition(xGridPosition, positionToCheck);
 			break;
 		}
 		else if (aux == (int32)GridData::kIndesttructibleWall)
@@ -283,3 +285,13 @@ void AWTTestBomb::SpawnCentralExplosion()
 
 }
  
+void AWTTestBomb::DestroyWallAtGridPosition(int32 xPosition, int32 yPosition)
+{
+  auto grid = m_GameMode->m_MapManager;
+
+  AWTTestDestructibleWall* destructibleWall = Cast<AWTTestDestructibleWall>(grid->GetGridActor(xPosition, yPosition));
+  check(IsValid(destructibleWall));
+  destructibleWall->ProcessWallDestruction();
+  grid->DestroyActorFromGrid(xPosition, yPosition);
+  m_Owner->m_Score += 100;
+}

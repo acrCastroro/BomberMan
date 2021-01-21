@@ -20,15 +20,11 @@ class WTTEST_API AWTTestDestructibleWall : public AActor
 	// --------------------------------------------------------
 	// UE4 Functions
 	// --------------------------------------------------------
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-  virtual void Destroyed() override;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 	// --------------------------------------------------------
 	// Class Properties
 	// --------------------------------------------------------
@@ -41,5 +37,11 @@ public:
 
   UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Actors|Pickups")
    int32 m_PickUpSpawningRatio = 6;
+
+  // --------------------------------------------------------
+  // Class Functions
+  // --------------------------------------------------------
+
+  void ProcessWallDestruction();
 
 };

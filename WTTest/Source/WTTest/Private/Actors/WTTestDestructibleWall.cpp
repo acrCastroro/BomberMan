@@ -1,9 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+
+#include "Actors/WTTestDestructibleWall.h"
+
 #include "Actors/WTTestPickups.h"
 #include "GameModes/WTTestGameMode.h"
-#include "Actors/WTTestDestructibleWall.h"
 
 
 // Sets default values
@@ -18,16 +20,13 @@ AWTTestDestructibleWall::AWTTestDestructibleWall(const FObjectInitializer& Objec
 	RootComponent = m_CubeMesh;
 }
 
-// Called when the game starts or when spawned
-void AWTTestDestructibleWall::BeginPlay()
+void AWTTestDestructibleWall::Tick(float DeltaTime) 
 {
-	Super::BeginPlay();	
+  Super::Tick(DeltaTime);
 }
 
-void AWTTestDestructibleWall::Destroyed()
+void AWTTestDestructibleWall::ProcessWallDestruction()
 {
-  Super::Destroyed();
-
   FActorSpawnParameters spawnParameters;
   spawnParameters.Instigator = GetInstigator();
 
@@ -36,16 +35,10 @@ void AWTTestDestructibleWall::Destroyed()
   {
     AWTTestPickups* pickup =
       GetWorld()->SpawnActor<AWTTestPickups>(m_Pickup, GetActorLocation(), GetActorRotation(), spawnParameters);
-    
+
     AWTTestGameMode* gm = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
     gm->m_MapManager->SetGridValueWithActorLocation(GetActorLocation(), (int32)GridData::kPickups);
   }
-
 }
 
-
-void AWTTestDestructibleWall::Tick(float DeltaTime) 
-{
-  Super::Tick(DeltaTime);
-}
 

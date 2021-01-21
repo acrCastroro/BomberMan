@@ -13,8 +13,8 @@ UENUM(BlueprintType)
 enum class GridData : uint8 
 {
 	kNothing = 0 UMETA(DisplayName = "NothingInGrid"),
-	kDestructibleWall = 1  UMETA(DisplayName = "AddExplosionExpansion"),
-	kIndesttructibleWall = 2     UMETA(DisplayName = "AddPlayerSpeed"),
+	kDestructibleWall = 1  UMETA(DisplayName = "DestructibleWall"),
+	kIndesttructibleWall = 2     UMETA(DisplayName = "IndestructibleWall"),
 	kPickups = 3					UMETA(DisplayName = "Pickups"),
 
 	kExplosion UMETA(DisplayName = "MaxRange"),
@@ -46,31 +46,32 @@ public:
 
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "EndGame"))
+  UPROPERTY(BlueprintReadwrite)
 	bool m_bEndGame = false;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Level Timer"))
 	float m_LevelTimer = 120.0;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Timers", meta = (DisplayName = "Time To Add Bombs"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadwrite, Category = "Config|Timers", meta = (DisplayName = "Time To Add Bombs"))
 	float m_SecondsToAddBombs = 30.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|GameModeValues", meta = (DisplayName = "Min number Pickups at start game"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadwrite, Category = "Config|GameModeValues", meta = (DisplayName = "Min number Pickups at start game"))
 	int32 m_MinNumberOfPickupsAtStartGame = 2;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|GameModeValues", meta = (DisplayName = "Max number Pickups at start game"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadwrite, Category = "Config|GameModeValues", meta = (DisplayName = "Max number Pickups at start game"))
 	int32 m_MaxNumberOfPickupsAtStartGame = 6;
+
+  int32 m_NumberOfPlayersInGame = 2;
 
 	FTimerHandle m_TimeToAddBombsToPlayersHandle;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
+  UPROPERTY(EditDefaultsOnly, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "Map Manager"))
+  TSubclassOf<AWTTestMapManager> m_MapManagerBP;
+
+	UPROPERTY()
 	AWTTestMapManager* m_MapManager;
-
-  UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "PlayersInGame"))
+  UPROPERTY()
   TArray<AActor*> m_Players;
-
-  UPROPERTY(VisibleAnywhere, BlueprintReadwrite, Category = "Config|Level", meta = (DisplayName = "NumberOfPlayersInGame"))
-  int32 m_NumberOfPlayersInGame = 2;
 
 	UFUNCTION(BlueprintCallable, Category = "GameProperties|Getters")
 	int32 GetTimeRemainingToEndGame() const;
