@@ -50,10 +50,6 @@ void AWTTestCharacter::BeginPlay()
 
   Super::BeginPlay();
 
-  auto gm = Cast<UWTTestGameInstance>(GetWorld()->GetGameInstance());
-  if(IsValid(gm))
-  m_Score = gm->m_Player1Score;
-
 }
 
 float AWTTestCharacter::TakeDamage(float DamageTaken, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -64,7 +60,7 @@ float AWTTestCharacter::TakeDamage(float DamageTaken, struct FDamageEvent const&
 
   if (m_CurrentHealth <= 0.0f)
   {
-    //GetMesh()->SetVisibility(false);
+    GetMesh()->SetVisibility(false);
     m_Alive = false;
     AWTTestGameMode* gm = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
     gm->m_bEndGame = true;
@@ -94,13 +90,12 @@ void AWTTestCharacter::MoveRight(float Value)
 {
 	if ( (Controller != NULL) && (Value != 0.0f) )
 	{
-		// find out which way is right
+
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 	
-		// get right vector 
+
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
 }
@@ -108,10 +103,7 @@ void AWTTestCharacter::MoveRight(float Value)
 void AWTTestCharacter::PlantBomb() {
 
 	 AWTTestGameMode* gm =  Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
-	 int32 a, b;
-	 
-	 GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::FromInt(gm->m_MapManager->GetGridValueWithLocation(GetActorLocation(), a, b)));
-	
+
 	 if (m_NumberOfAvailableBombs > 0)
 	{
 

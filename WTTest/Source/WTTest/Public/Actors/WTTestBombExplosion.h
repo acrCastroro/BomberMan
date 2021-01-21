@@ -43,10 +43,17 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values", meta = (DisplayName = "Seconds To Expode"))
 	float m_ExplosionTime = 1.5f;
 
+  UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values|Resize")
+   float m_ResizeTimeRatio = 0.33f;
+
+  UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values|Resize")
+   float m_ResizeSubstractionQuantity = 0.6f;
+
   UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config|DamageType")
   TSubclassOf<class UDamageType> m_DamageType;
 
 	FTimerHandle m_TimeToEndHandle;
+  FTimerHandle m_TimeToResizeHanlde;
 
 	// --------------------------------------------------------
 	// Class Functions
@@ -54,6 +61,8 @@ public:
 
 	UFUNCTION()
 	void Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+  void Resize();
 
 	void EndExplosion();
 };

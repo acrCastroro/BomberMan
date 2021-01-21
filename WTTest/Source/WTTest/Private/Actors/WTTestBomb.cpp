@@ -84,7 +84,7 @@ void AWTTestBomb::UpExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(positionToCheck, yGridPosition);
 
-		if (aux == 1) {
+		if (aux == (int32)GridData::kDestructibleWall) {
 			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
 			m_Owner->m_Score += 100;
 			break;
@@ -125,7 +125,6 @@ void AWTTestBomb::RightExplosionExpansion()
 
 	int32 gridDisplacement = 0;
 	int32 positionToCheck = yGridPosition + 1;
-
 	while (gridDisplacement < m_Owner->m_CurrentExplosionTileDistance)
 	{
 
@@ -133,7 +132,7 @@ void AWTTestBomb::RightExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(xGridPosition, positionToCheck);
 
-		if (aux == 1) {
+		if (aux == (int32)GridData::kDestructibleWall) {
 			grid->DestroyActorFromGrid(xGridPosition, positionToCheck);
 			m_Owner->m_Score += 100;
 			break;
@@ -175,7 +174,6 @@ void AWTTestBomb::DownExplosionExpansion()
 	int32 gridDisplacement = 0;
 	int32 positionToCheck = xGridPosition + 1;
 
-
 	while (gridDisplacement < m_Owner->m_CurrentExplosionTileDistance)
 	{
 
@@ -183,7 +181,7 @@ void AWTTestBomb::DownExplosionExpansion()
 
 		int32 aux = grid->GetGridValue(positionToCheck, yGridPosition);
 
-		if (aux == 1) {
+		if (aux == (int32)GridData::kDestructibleWall) {
 			grid->DestroyActorFromGrid(positionToCheck, yGridPosition);
 			m_Owner->m_Score += 100;
 			break;
@@ -279,7 +277,7 @@ void AWTTestBomb::SpawnCentralExplosion()
 	grid->GetGridValueWithLocation(GetActorLocation(), xGridPosition, yGridPosition);
 	FVector spawnLocation = grid->GetWorldPositionFromGrid(xGridPosition, yGridPosition);
 
-	grid->SetGridValueWithActorLocation(spawnLocation, 3);
+	grid->SetGridValueWithActorLocation(spawnLocation, (int32)GridData::kExplosion);
 
 	AWTTestBombExplosion* spawnedExplosion =
 		GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);

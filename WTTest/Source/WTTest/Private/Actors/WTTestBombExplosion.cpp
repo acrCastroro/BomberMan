@@ -42,6 +42,7 @@ void AWTTestBombExplosion::BeginPlay()
 	if (IsValid(world))
 	{
 		world->GetTimerManager().SetTimer(m_TimeToEndHandle, this, &AWTTestBombExplosion::EndExplosion, m_ExplosionTime, false);
+    world->GetTimerManager().SetTimer(m_TimeToResizeHanlde, this, &AWTTestBombExplosion::Resize, m_ExplosionTime * m_ResizeTimeRatio, true);
 	}
 	
 }
@@ -55,10 +56,8 @@ void AWTTestBombExplosion::Tick(float DeltaTime)
 
 void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-  GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, OtherActor->GetName());
 	if ((OtherActor != nullptr) && (OtherActor != this))
 	{
-
 		AWTTestBomb* bomb = Cast<AWTTestBomb>(OtherActor);
 		if (IsValid(bomb))
 		{
@@ -71,11 +70,16 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 
     AWTTestCharacter* character = Cast<AWTTestCharacter>(OtherActor);
     if (IsValid(character))
-    {     
+    {
         UGameplayStatics::ApplyDamage(character, 110.0f, GetInstigatorController(), this, m_DamageType);
     }
-
 	}
+}
+
+void AWTTestBombExplosion::Resize()
+{
+  m_Mesh->SetRelativeScale3D(m_Mesh->GetRelativeScale3D() - FVector(m_ResizeSubstractionQuantity));
+
 }
 
 
