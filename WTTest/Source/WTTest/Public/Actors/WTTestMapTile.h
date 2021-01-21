@@ -2,9 +2,15 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+// --------- WTTest Includes ------------
+
+
 #include "WTTestMapTile.generated.h"
+
 
 UCLASS()
 class WTTEST_API AWTTestMapTile : public AActor

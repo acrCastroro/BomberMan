@@ -2,15 +2,18 @@
 
 #pragma once
 
+
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+// --------- WTTest Includes ------------
+
 #include "WTTestSecondPlayerController.generated.h"
+
 
 class AWTTestCharacter;
 
-/**
- * 
- */
 UCLASS()
 class WTTEST_API AWTTestSecondPlayerController : public APlayerController
 {

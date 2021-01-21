@@ -1,16 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+
+// --------- WTTest Includes ------------
 #include "PlayerControllers/WTTestPlayerController.h"
-
-#include "Kismet/GameplayStatics.h"
-
 #include "Characters/WTTestCharacter.h"
+// --------- Engine Includes ------------
+#include "Kismet/GameplayStatics.h"
 
 // --------------------------------------------------------
 // Constructors
 // --------------------------------------------------------
-
 
 AWTTestPlayerController::AWTTestPlayerController(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -22,7 +22,6 @@ AWTTestPlayerController::AWTTestPlayerController(const FObjectInitializer& Objec
 // UE4 Functions
 // --------------------------------------------------------
 
-
 void AWTTestPlayerController::BeginPlay()
 {
   Super::BeginPlay();
@@ -33,7 +32,6 @@ void AWTTestPlayerController::BeginPlay()
 
   SetCharactersMaterials();
 }
-
 
 void AWTTestPlayerController::SetupInputComponent()
 {
@@ -55,6 +53,7 @@ void AWTTestPlayerController::OnPossess(APawn* InPawn)
 {
   Super::OnPossess(InPawn);
 }
+
 // --------------------------------------------------------
 // Input Functions
 // --------------------------------------------------------
@@ -113,6 +112,5 @@ AWTTestCharacter* AWTTestPlayerController::GetPlayer(int32 index)
   {
     return m_Character1;
   }
-
   return m_Character2;
 }

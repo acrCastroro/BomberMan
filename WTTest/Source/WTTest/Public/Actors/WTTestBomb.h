@@ -2,8 +2,12 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+// --------- WTTest Includes ------------
+
 #include "WTTestBomb.generated.h"
 
 class AWTTestGameMode;
@@ -43,11 +47,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mesh")
 	class UStaticMeshComponent* m_SphereMesh;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Config|Values")
 	float m_TimeToExplode = 3.0f;
-  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+  UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Config|Values")
   float m_TimeToGrow = 1.0f;
-  UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Values")
+  UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Config|Values")
   float m_Damage = 110.0f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Explosion", meta = (DisplayName = "Bomb Explosion"))
@@ -61,6 +65,7 @@ public:
 	AWTTestGameMode* m_GameMode;
 
 	FActorSpawnParameters m_SpawnParameters;
+
 	// --------------------------------------------------------
 	// Class Functions
 	// --------------------------------------------------------

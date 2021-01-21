@@ -2,13 +2,16 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+// --------- WTTest Includes ------------
+
+
 #include "WTTestGameInstance.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class WTTEST_API UWTTestGameInstance : public UGameInstance
 {

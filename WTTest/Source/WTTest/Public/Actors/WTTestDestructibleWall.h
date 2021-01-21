@@ -2,10 +2,15 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+// --------- WTTest Includes ------------
+
 
 #include "WTTestDestructibleWall.generated.h"
+
 
 UCLASS()
 class WTTEST_API AWTTestDestructibleWall : public AActor

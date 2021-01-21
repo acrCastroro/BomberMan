@@ -2,16 +2,13 @@
 
 #pragma once
 
-// --------------------------------------------------------
-// Engine Includes
-// --------------------------------------------------------
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/PlayerStart.h"
+// --------- WTTest Includes ------------
 
-// --------------------------------------------------------
-// Own Includes
-// --------------------------------------------------------
 
 #include "WTTestMapManager.generated.h"
 

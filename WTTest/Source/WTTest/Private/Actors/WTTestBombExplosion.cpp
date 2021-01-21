@@ -1,19 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+// --------- WTTest Includes ------------
 #include "Actors/WTTestBombExplosion.h"
 #include "Characters/WTTestCharacter.h"
 #include "Actors/WTTestBomb.h"
 #include "GameModes/WTTestGameMode.h"
-
+// --------- Engine Includes ------------
 #include "Kismet/GameplayStatics.h"
 
 
-// Sets default values
 AWTTestBombExplosion::AWTTestBombExplosion(const FObjectInitializer& ObjectInitializer) 
 	: Super(ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
@@ -27,7 +25,6 @@ AWTTestBombExplosion::AWTTestBombExplosion(const FObjectInitializer& ObjectIniti
 	m_Collider->SetWorldScale3D(FVector(100.0f));
 
   m_DamageType = UDamageType::StaticClass();
-
 }
 
 // Called when the game starts or when spawned
@@ -43,8 +40,7 @@ void AWTTestBombExplosion::BeginPlay()
 	{
 		world->GetTimerManager().SetTimer(m_TimeToEndHandle, this, &AWTTestBombExplosion::EndExplosion, m_ExplosionTime, false);
     world->GetTimerManager().SetTimer(m_TimeToResizeHanlde, this, &AWTTestBombExplosion::Resize, m_ExplosionTime * m_ResizeTimeRatio, true);
-	}
-	
+	}	
 }
 
 // Called every frame
@@ -79,20 +75,16 @@ void AWTTestBombExplosion::Overlap(UPrimitiveComponent* OverlappedComp, AActor* 
 void AWTTestBombExplosion::Resize()
 {
   m_Mesh->SetRelativeScale3D(m_Mesh->GetRelativeScale3D() - FVector(m_ResizeSubstractionQuantity));
-
 }
 
 
 void AWTTestBombExplosion::EndExplosion() 
 {
 	AWTTestGameMode* gameMode = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
-
 	if (IsValid(gameMode))
 	{
 		gameMode->m_MapManager->SetGridValueWithActorLocation(GetActorLocation(), 0);
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, "Cambio Valor");
 	}
-
 	Destroy();
-
 }

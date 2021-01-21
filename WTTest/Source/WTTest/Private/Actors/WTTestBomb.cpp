@@ -1,20 +1,19 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Actors/WTTestBomb.h"
 
+// --------- Engine Includes ------------
+#include "Actors/WTTestBomb.h"
 #include "Actors/WTTestBombExplosion.h"
 #include "Actors/WTTestDestructibleWall.h"
 #include "Characters/WTTestCharacter.h"
-#include "Kismet/GameplayStatics.h"
 #include "GameModes/WTTestGameMode.h"
+// --------- Engine Includes ------------
+#include "Kismet/GameplayStatics.h"
 
 
-
-// Sets default values
 AWTTestBomb::AWTTestBomb(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	m_SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
@@ -42,8 +41,7 @@ void AWTTestBomb::BeginPlay()
 	{
 		world->GetTimerManager().SetTimer(m_TimeToExplodeHandle, this, &AWTTestBomb::Explode, m_TimeToExplode, false);
     world->GetTimerManager().SetTimer(m_TimeToGrowHandle, this, &AWTTestBomb::Grow, m_TimeToGrow, true);
-	}
-	
+	}	
 }
 
 // Called every frame
@@ -162,7 +160,6 @@ void AWTTestBomb::RightExplosionExpansion()
 		gridDisplacement++;
 		positionToCheck++;
 	}
-
 }
 
 void AWTTestBomb::DownExplosionExpansion()
@@ -211,7 +208,6 @@ void AWTTestBomb::DownExplosionExpansion()
 		gridDisplacement++;
 		positionToCheck++;
 	}
-
 }
 
 void AWTTestBomb::LeftExplosionExpansion()
@@ -282,7 +278,6 @@ void AWTTestBomb::SpawnCentralExplosion()
 
 	AWTTestBombExplosion* spawnedExplosion =
 		GetWorld()->SpawnActor<AWTTestBombExplosion>(m_BombExplosion, spawnLocation, FRotator(0.0f), m_SpawnParameters);
-
 }
  
 void AWTTestBomb::DestroyWallAtGridPosition(int32 xPosition, int32 yPosition)

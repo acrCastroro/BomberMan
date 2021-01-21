@@ -2,10 +2,13 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-
+// --------- WTTest Includes ------------
 #include "Actors/WTTestMapManager.h"
+
 
 #include "WTTestGameMode.generated.h"
 
@@ -72,6 +75,10 @@ public:
 	AWTTestMapManager* m_MapManager;
   UPROPERTY()
   TArray<AActor*> m_Players;
+
+  // --------------------------------------------------------
+  // Class Functions
+  // --------------------------------------------------------
 
 	UFUNCTION(BlueprintCallable, Category = "GameProperties|Getters")
 	int32 GetTimeRemainingToEndGame() const;

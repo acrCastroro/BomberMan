@@ -2,16 +2,23 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+// --------- WTTest Includes ------------
+
 #include "WTTestHUD.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class WTTEST_API AWTTestHUD : public AHUD
 {
-	GENERATED_BODY()
-	
+  GENERATED_BODY()
+
+  // --------------------------------------------------------
+  // Constructors
+  // --------------------------------------------------------
+
+    AWTTestHUD(const FObjectInitializer& ObjectInitializer);	
 };

@@ -2,8 +2,13 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+// --------- Engine Includes ------------
+
+
 #include "WTTestPickups.generated.h"
 
 
@@ -34,16 +39,14 @@ public:
 	// --------------------------------------------------------
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// --------------------------------------------------------
 	// Class Functions
 	// --------------------------------------------------------
+
 	UFUNCTION(BlueprintCallable)
 	PickupTypes GetPickupType();
 
@@ -54,14 +57,11 @@ public:
 	// --------------------------------------------------------
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Mesh")
-	class UStaticMeshComponent* m_Mesh;
-
-	
+	class UStaticMeshComponent* m_Mesh;	
 
 protected:
 	PickupTypes m_PickupType;	
 
-	//PickupTypes m_PickUpTipes;
 	
 
 };

@@ -2,8 +2,11 @@
 
 #pragma once
 
+
+// --------- Engine Includes ------------
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+// --------- WTTest Includes ------------
 
 
 #include "WTTestCharacter.generated.h"
@@ -15,29 +18,32 @@ class AWTTestCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
+  // --------------------------------------------------------
+  // Constructors
+  // --------------------------------------------------------
 	AWTTestCharacter();
 
-	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
 
-	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+  // --------------------------------------------------------
+  // UE4 Functions
+  // --------------------------------------------------------
 public:
 
   virtual void BeginPlay() override;
 
   virtual float TakeDamage(float DamageTaken, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
-	/** Called for forwards/backward input */
-	void MoveForward(float Value);
+  // --------------------------------------------------------
+  // Class Properties
+  // --------------------------------------------------------
 
-	/** Called for side to side input */
-	void MoveRight(float Value);
-
-	void PlantBomb();
+public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Config|Bombs", meta = (DisplayName = "Bombs"))
 	TSubclassOf<class AWTTestBomb> m_Bombs;
@@ -66,8 +72,16 @@ public:
   UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|State")
   bool m_Alive = true;
 
+  // --------------------------------------------------------
+  // Class Functions
+  // --------------------------------------------------------
 
-protected:
+  void MoveForward(float Value);
+
+  void MoveRight(float Value);
+
+  void PlantBomb();
+
 
 };
 

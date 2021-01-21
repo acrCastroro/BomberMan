@@ -1,17 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Actors/WTTestMapManager.h"
 
+// --------- WTTest Includes ------------
+#include "Actors/WTTestMapManager.h"
 #include "Actors/WTTestDestructibleWall.h"
 #include "Actors/WTTestMapTile.h"
 #include "Actors/WTTestPickups.h"
 #include "GameModes/WTTestGameMode.h"
 #include "Characters/WTTestCharacter.h"
-
+// --------- Engine Includes ------------
 #include "Kismet/GameplayStatics.h"
 
-// Sets default values
 AWTTestMapManager::AWTTestMapManager(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
@@ -20,7 +20,6 @@ AWTTestMapManager::AWTTestMapManager(const FObjectInitializer& ObjectInitializer
 
 }
 
-// Called when the game starts or when spawned
 void AWTTestMapManager::BeginPlay()
 {
 	Super::BeginPlay();
@@ -36,12 +35,10 @@ void AWTTestMapManager::BeginPlay()
 	
 }
 
-// Called every frame
 void AWTTestMapManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-
 
 void AWTTestMapManager::CreateGrid() 
 {

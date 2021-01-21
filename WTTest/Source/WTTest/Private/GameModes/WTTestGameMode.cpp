@@ -1,11 +1,13 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+// --------- WTTest Includes ------------
 #include "GameModes/WTTestGameMode.h"
 #include "Characters/WTTestCharacter.h"
+// --------- Engine Includes ------------
 #include "UObject/ConstructorHelpers.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
-#include "Characters/WTTestCharacter.h"
+
 
 AWTTestGameMode::AWTTestGameMode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
