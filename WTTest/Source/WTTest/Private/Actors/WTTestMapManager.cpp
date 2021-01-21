@@ -285,8 +285,9 @@ void AWTTestMapManager::DestroyActorFromGrid(int32 x, int32 y)
   if ((x >= 0 && x < m_kGridWidth) && (y >= 0 && y < m_kGridHeight))
   {
     m_Grid[x][y] = 0;
+    if (IsValid(m_ActorsGrid[x][y]))  m_ActorsGrid[x][y]->Destroy();
   }
-	if (IsValid(m_ActorsGrid[x][y]))  m_ActorsGrid[x][y]->Destroy();
+
 }
 
 void AWTTestMapManager::SetGridValueWithActorLocation(FVector actorLocation, int32 value)

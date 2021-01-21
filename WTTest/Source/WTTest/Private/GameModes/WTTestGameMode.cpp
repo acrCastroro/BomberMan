@@ -57,8 +57,7 @@ int32 AWTTestGameMode::GetTimeRemainingToEndGame() const
 }
 
 void AWTTestGameMode::AddBombsToPlayers()
-{
-  
+{  
 	for (int i = 0; i < m_Players.Num(); ++i)
 	{
 		AWTTestCharacter* player = Cast<AWTTestCharacter>(m_Players[i]);

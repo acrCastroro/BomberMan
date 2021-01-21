@@ -5,6 +5,7 @@
 #include "Actors/WTTestBomb.h"
 #include "GameModes/WTTestGameMode.h"
 #include "GameInstance/WTTestGameInstance.h"
+#include "PlayerControllers/WTTestPlayerController.h"
 
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
@@ -64,6 +65,18 @@ float AWTTestCharacter::TakeDamage(float DamageTaken, struct FDamageEvent const&
     m_Alive = false;
     AWTTestGameMode* gm = Cast<AWTTestGameMode>(GetWorld()->GetAuthGameMode());
     gm->m_bEndGame = true;
+
+    auto gI = Cast<UWTTestGameInstance>(GetWorld()->GetGameInstance());
+    auto playerController = Cast <AWTTestPlayerController>(this->GetController());
+    
+    if (this == playerController->GetPlayer(1))
+    {
+      gI->m_Player1Wins++;
+    }
+    else
+    {
+      gI->m_Player2Wins++;
+    }
   }
 
   return DamageTaken;

@@ -39,9 +39,6 @@ protected:
 	// Input Functions
 	// --------------------------------------------------------
 
-  UFUNCTION(BlueprintImplementableEvent)
-  void SetCharactersMaterials();
-
 protected:
 
 	UFUNCTION()
@@ -73,5 +70,16 @@ protected:
 
   UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Config|Players", meta = (DisplayName = "Player2"))
   AWTTestCharacter* m_Character2;
-	
+
+  // --------------------------------------------------------
+  // Class Functions
+  // --------------------------------------------------------
+public:
+
+  UFUNCTION(BlueprintCallable)
+  AWTTestCharacter* GetPlayer(int32 index);
+
+  UFUNCTION(BlueprintImplementableEvent)
+  void SetCharactersMaterials();
+
 };

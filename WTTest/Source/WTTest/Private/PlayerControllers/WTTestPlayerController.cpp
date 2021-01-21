@@ -106,3 +106,13 @@ void AWTTestPlayerController::Player2PlantBomb()
     m_Character2->PlantBomb();
   }
 }
+
+AWTTestCharacter* AWTTestPlayerController::GetPlayer(int32 index)
+{
+  if (index == 1)
+  {
+    return m_Character1;
+  }
+
+  return m_Character2;
+}

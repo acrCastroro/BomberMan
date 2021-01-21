@@ -47,7 +47,7 @@ public:
    float m_ResizeTimeRatio = 0.33f;
 
   UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Config|Values|Resize")
-   float m_ResizeSubstractionQuantity = 0.6f;
+   float m_ResizeSubstractionQuantity = 0.06f;
 
   UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config|DamageType")
   TSubclassOf<class UDamageType> m_DamageType;

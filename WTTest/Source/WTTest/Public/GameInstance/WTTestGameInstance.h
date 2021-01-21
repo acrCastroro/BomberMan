@@ -31,4 +31,10 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = "Game|Players")
     int32 m_Player2Score = 0;
 
+    UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = "Game|Players")
+    int32 m_Player1Wins = 0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = "Game|Players")
+    int32 m_Player2Wins = 0;
+
 };
